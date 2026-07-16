@@ -400,6 +400,16 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
 .reveal.is-in{opacity:1;transform:none}
 
+/* ---------- Signature animations ---------- */
+/* Hero accent: SVG underline draws on once, after load */
+.hero h1 em.accent{position:relative;white-space:nowrap}
+.accent-underline{position:absolute;left:0;right:0;bottom:-.12em;width:100%;height:.32em;overflow:visible;pointer-events:none}
+.accent-underline path{stroke:var(--tan);fill:none;stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw-underline .9s var(--ease-out) .55s forwards}
+@keyframes draw-underline{to{stroke-dashoffset:0}}
+/* Count-up: tabular figures + reserved width so digits never shift neighbours */
+.countup{font-variant-numeric:tabular-nums}
+.g-count .countup{display:inline-block;min-width:3ch;text-align:right}
+
 /* =========================================================
    Breakpoints
    ========================================================= */
@@ -447,6 +457,7 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
 /* ---------- Motion / a11y ---------- */
 @media (prefers-reduced-motion:reduce){
   html:focus-within{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;transition-delay:0ms !important;animation-delay:0ms !important}
   .reveal{opacity:1;transform:none}
+  .accent-underline path{animation:none !important;stroke-dashoffset:0 !important}
 }

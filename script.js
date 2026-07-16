@@ -38,7 +38,7 @@
     });
   });
 
-  /* ---- Scroll reveal (respects reduced-motion) ---- */
+  /* ---- Scroll reveal (respects reduced-motion) + 60ms services stagger ---- */
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
   if (reduce || !("IntersectionObserver" in window)) {
@@ -46,13 +46,60 @@
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        // Stagger service cards by DOM order; clear the delay after so hover stays snappy
+        if (el.classList.contains("service-card") && el.parentElement) {
+          var idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+          el.style.transitionDelay = (idx * 60) + "ms";
+          el.addEventListener("transitionend", function handler() {
+            el.style.transitionDelay = "";
+            el.removeEventListener("transitionend", handler);
+          });
         }
+        el.classList.add("is-in");
+        io.unobserve(el);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---- Count-up on the reviews rating + count when they enter the viewport ---- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll(".countup"));
+  if (counters.length) {
+    var setFinal = function (el) {
+      var to = parseFloat(el.getAttribute("data-to"));
+      var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+      el.textContent = dec ? to.toFixed(dec) : String(Math.round(to));
+    };
+    if (reduce || !("IntersectionObserver" in window) || !window.requestAnimationFrame) {
+      counters.forEach(setFinal); // skip straight to final state
+    } else {
+      counters.forEach(function (el) {
+        var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+        el.textContent = dec ? (0).toFixed(dec) : "0";
+      });
+      var runCount = function (el) {
+        var to = parseFloat(el.getAttribute("data-to"));
+        var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+        var dur = 1100, start = performance.now();
+        (function frame(now) {
+          var p = Math.min(1, (now - start) / dur);
+          var v = to * (1 - Math.pow(1 - p, 3)); // ease-out cubic
+          el.textContent = dec ? v.toFixed(dec) : String(Math.round(v));
+          if (p < 1) requestAnimationFrame(frame); else setFinal(el);
+        })(start);
+      };
+      var target = document.querySelector(".google-summary") || document.getElementById("reviews") || counters[0];
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          counters.forEach(runCount);
+          cio.disconnect();
+        });
+      }, { threshold: 0.4 });
+      cio.observe(target);
+    }
   }
 
   /* ---- Booking form: custom validation + demo success (swap for Cal.com / real endpoint) ---- */
