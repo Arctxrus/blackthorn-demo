@@ -195,8 +195,12 @@ ul{margin:0;padding:0;list-style:none}
 .hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0 1.25rem}
 .hero-actions .btn{flex:1 1 auto;min-width:11rem}
 /* First-visit offer: quiet slim badge */
-.hero-offer{display:inline-flex;align-items:center;gap:.5rem;margin:0;padding:.35rem .8rem .35rem .4rem;border-radius:999px;background:color-mix(in srgb, var(--caramel) 9%, transparent);border:1px solid color-mix(in srgb, var(--caramel) 26%, transparent);color:var(--muted-text);font-size:.9rem;font-weight:500;line-height:1.2}
+.hero-offer{display:inline-flex;align-items:center;gap:.5rem;margin:0;padding:.35rem .8rem .35rem .4rem;border-radius:999px;background:color-mix(in srgb, var(--caramel) 9%, transparent);border:1px solid color-mix(in srgb, var(--caramel) 26%, transparent);color:var(--muted-text);font-size:.9rem;font-weight:500;line-height:1.2;text-decoration:none;transition:background .18s var(--ease-out),border-color .18s var(--ease-out),transform .18s var(--ease-out)}
+.hero-offer:hover{background:color-mix(in srgb, var(--caramel) 16%, transparent);border-color:color-mix(in srgb, var(--caramel) 42%, transparent);transform:translateY(-1px)}
 .hero-offer-tag{display:inline-block;padding:.22rem .55rem;border-radius:999px;background:var(--caramel);color:var(--ivory);font-weight:700;font-size:.8rem;white-space:nowrap}
+.hero-phone{margin:.85rem 0 0;color:var(--muted-text);font-size:.98rem}
+.hero-phone a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--caramel) 55%,transparent);transition:border-color .18s var(--ease-out)}
+.hero-phone a:hover{border-bottom-color:var(--caramel)}
 .hero-trust{display:flex;align-items:center;gap:.5rem;color:var(--muted-text);font-size:.98rem;margin:0}
 .hero-trust strong{color:var(--ink)}
 
@@ -408,6 +412,27 @@ ul{margin:0;padding:0;list-style:none}
 .form-success .success-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--caramel);color:var(--ivory);margin-bottom:.25rem}
 .form-success h3{font-family:var(--font-display);font-weight:600;font-size:1.5rem}
 .form-success p{color:var(--muted-text);margin:0;max-width:22rem}
+
+/* ---------- Mid-page quiet CTA ---------- */
+.section-cta{margin-top:clamp(1.75rem,4vw,2.5rem);text-align:center}
+.section-cta a{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-body);font-weight:700;font-size:1rem;color:var(--caramel);text-decoration:none;padding:.5rem .25rem;border-bottom:2px solid color-mix(in srgb,var(--caramel) 45%,transparent);transition:gap .18s var(--ease-out),border-color .18s var(--ease-out),color .18s var(--ease-out)}
+.section-cta a svg{transition:transform .18s var(--ease-out)}
+.section-cta a:hover{border-bottom-color:var(--caramel)}
+.section-cta a:hover svg{transform:translateX(3px)}
+.reviews .section-cta a{color:var(--tan);border-bottom-color:color-mix(in srgb,var(--tan) 45%,transparent)}
+.reviews .section-cta a:hover{color:var(--cream);border-bottom-color:var(--tan)}
+
+/* ---------- Booking: optional group + offer + walk-in ---------- */
+.booking-optional{margin-top:.25rem}
+.optional-divider{display:flex;align-items:center;gap:.75rem;margin:.25rem 0 1rem;color:var(--muted-text);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.optional-divider span{flex:0 0 auto}
+.optional-divider::before,.optional-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+.booking-optional .field{margin-bottom:.85rem}
+.booking-optional label{font-size:.85rem;font-weight:500;color:var(--muted-text)}
+.booking-optional select,.booking-optional textarea{min-height:44px;font-size:.95rem}
+.form-offer{display:flex;align-items:center;gap:.55rem;margin:1.1rem 0 .85rem;padding:.5rem .75rem;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--caramel) 10%,transparent);border:1px solid color-mix(in srgb,var(--caramel) 26%,transparent);color:var(--ink);font-size:.92rem;font-weight:500;line-height:1.25}
+.form-offer-tag{flex:0 0 auto;padding:.22rem .55rem;border-radius:999px;background:var(--caramel);color:var(--ivory);font-weight:700;font-size:.78rem;white-space:nowrap}
+.form-walkin{margin:.8rem 0 0;text-align:center;color:var(--muted-text);font-size:.9rem;font-style:italic}
 
 /* ---------- Visit / hours / map ---------- */
 .visit-grid{display:grid;gap:clamp(1.5rem,4vw,2.5rem)}

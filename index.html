@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,400&family=Hanken+Grotesk:wght@400;500;700&family=Caveat:wght@500&display=swap" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241E18'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23C79A6A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
-<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="styles.css?v=15" />
 
 <!-- Local business structured data -->
 <script type="application/ld+json">
@@ -69,10 +69,10 @@
       <span class="nav-pill" aria-hidden="true"></span>
       <ul>
         <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Our work</a></li>
         <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#team">Team</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">Story</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#visit">Visit</a></li>
       </ul>
@@ -89,10 +89,10 @@
   <div class="mobile-menu" id="mobile-menu" hidden>
     <ul>
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Our work</a></li>
       <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">Story</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#visit">Visit</a></li>
     </ul>
@@ -113,7 +113,8 @@
           <a class="btn btn-primary" href="#booking">Book your chair</a>
           <a class="btn btn-ghost" href="#services">See services</a>
         </div>
-        <p class="hero-offer"><span class="hero-offer-tag">10% off</span> your first visit when you book online</p>
+        <a class="hero-offer" href="#booking"><span class="hero-offer-tag">10% off</span> your first visit when you book online</a>
+        <p class="hero-phone">Prefer to call? <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a></p>
       </div>
 
       <div class="hero-media reveal">
@@ -170,6 +171,28 @@
     </div>
   </section>
 
+  <!-- ===================== OUR WORK ===================== -->
+  <section class="gallery section" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Fresh out of the chair</p>
+        <h2 id="gallery-title">Our work.</h2>
+        <p class="section-lead">A handful of recent chairs. Real cuts on real regulars.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="g-item g-tall reveal"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&h=1000&fit=crop&q=80" alt="A hot towel shave in progress" width="800" height="1000" loading="lazy" /></figure>
+        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=560&fit=crop&q=80" alt="A fresh skin fade blended tight to the skin" width="800" height="560" loading="lazy" /></figure>
+        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=800&h=560&fit=crop&q=80" alt="A neatly shaped and lined-up beard" width="800" height="560" loading="lazy" /></figure>
+        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1704072650662-76df3af134a7?w=800&h=560&fit=crop&q=80" alt="A young client with a fresh cut, cape still on" width="800" height="560" loading="lazy" /></figure>
+        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=560&fit=crop&q=80" alt="A women's cut styled and finished" width="800" height="560" loading="lazy" /></figure>
+        <figure class="g-item g-wide reveal"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1200&h=560&fit=crop&q=80" alt="A crisp textured crop, finished at the back" width="1200" height="560" loading="lazy" /></figure>
+      </div>
+      <div class="section-cta reveal">
+        <a href="#booking">Book your chair<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== REVIEWS ===================== -->
   <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
     <div class="wrap">
@@ -199,25 +222,8 @@
           <p class="reviewer"><strong>Sarah H.</strong><span>Local Guide · Google</span></p>
         </li>
       </ul>
-    </div>
-  </section>
-
-  <!-- ===================== OUR STORY ===================== -->
-  <section class="about section" id="about" aria-labelledby="about-title">
-    <div class="wrap about-grid">
-      <div class="about-media reveal-left">
-        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1050&fit=crop&q=80"
-             alt="A polished tan leather barber chair under warm light at Blackthorn &amp; Co." width="900" height="1050" loading="lazy" />
-      </div>
-      <div class="about-copy reveal-right">
-        <p class="eyebrow">Our story</p>
-        <h2 id="about-title">A neighbourhood shop that takes the craft seriously.</h2>
-        <p>We opened on Market Street in 2012 with one idea: proper barbering without the fuss. Barber-led but open to everyone, from a first haircut to a full hot towel shave. Expect an unhurried chair and a finish that still looks good a fortnight on.</p>
-        <ul class="stat-row">
-          <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
-          <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
-          <li><span class="stat-num"><span class="countup" data-to="6">6</span></span><span class="stat-label">Barbers &amp; stylists</span></li>
-        </ul>
+      <div class="section-cta reveal">
+        <a href="#booking">Book your chair<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -260,27 +266,28 @@
     </div>
   </section>
 
-  <!-- ===================== GALLERY ===================== -->
-  <section class="gallery section section-sand" id="gallery" aria-labelledby="gallery-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Fresh out of the chair</p>
-        <h2 id="gallery-title">Our work.</h2>
-        <p class="section-lead">A handful of recent chairs. Real cuts on real regulars.</p>
+  <!-- ===================== OUR STORY ===================== -->
+  <section class="about section section-sand" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="about-media reveal-left">
+        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1050&fit=crop&q=80"
+             alt="A polished tan leather barber chair under warm light at Blackthorn &amp; Co." width="900" height="1050" loading="lazy" />
       </div>
-      <div class="gallery-grid">
-        <figure class="g-item g-tall reveal"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&h=1000&fit=crop&q=80" alt="A hot towel shave in progress" width="800" height="1000" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=560&fit=crop&q=80" alt="A fresh skin fade blended tight to the skin" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=800&h=560&fit=crop&q=80" alt="A neatly shaped and lined-up beard" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=800&h=560&fit=crop&q=80" alt="Younger clients grinning after their trims" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=560&fit=crop&q=80" alt="A women's cut styled and finished" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item g-wide reveal"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1200&h=560&fit=crop&q=80" alt="A crisp textured crop, finished at the back" width="1200" height="560" loading="lazy" /></figure>
+      <div class="about-copy reveal-right">
+        <p class="eyebrow">Our story</p>
+        <h2 id="about-title">A neighbourhood shop that takes the craft seriously.</h2>
+        <p>We opened on Market Street in 2012 with one idea: proper barbering without the fuss. Barber-led but open to everyone, from a first haircut to a full hot towel shave. Expect an unhurried chair and a finish that still looks good a fortnight on.</p>
+        <ul class="stat-row">
+          <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
+          <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
+          <li><span class="stat-num"><span class="countup" data-to="6">6</span></span><span class="stat-label">Barbers &amp; stylists</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- ===================== FAQ ===================== -->
-  <section class="faq section section-sand" id="faq" aria-labelledby="faq-title">
+  <section class="faq section" id="faq" aria-labelledby="faq-title">
     <div class="wrap faq-wrap">
       <div class="section-head">
         <p class="eyebrow">Good to know</p>
@@ -313,7 +320,7 @@
   </section>
 
   <!-- ===================== BOOKING + CONTACT ===================== -->
-  <section class="booking section" id="booking" aria-labelledby="booking-title">
+  <section class="booking section section-sand" id="booking" aria-labelledby="booking-title">
     <div class="wrap booking-grid">
       <div class="booking-intro reveal-left">
         <span class="annotate annotate-book" aria-hidden="true">we'll save you a chair
@@ -323,7 +330,6 @@
         <h2 id="booking-title">Grab your chair at Blackthorn &amp; Co.</h2>
         <p>Tell us what you're after and when suits, and we'll confirm by text. Prefer to talk? Give the shop a ring and we'll happily help you pick a service or a barber.</p>
         <ul class="booking-points">
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <strong>10% off your first visit</strong> when you book online</li>
           <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Confirmation by text, usually within the hour</li>
           <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Free to change or cancel up to 4 hours before</li>
           <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Request a specific barber, or let us match you</li>
@@ -347,12 +353,12 @@
             <label for="bf-service">Service</label>
             <select id="bf-service" name="service" required>
               <option value="" selected disabled>Choose a service…</option>
-              <option>Signature Cut · £22</option>
-              <option>Skin Fade · £20</option>
-              <option>Kids' Cut · £12</option>
-              <option>Beard Trim &amp; Shape · £14</option>
-              <option>Hot Towel Shave · £25</option>
-              <option>Wash, Cut &amp; Blow-Dry · £24</option>
+              <option>Signature Cut · £22 · 45 min</option>
+              <option>Skin Fade · £20 · 30 min</option>
+              <option>Kids' Cut · £12 · 20 min</option>
+              <option>Beard Trim &amp; Shape · £14 · 20 min</option>
+              <option>Hot Towel Shave · £25 · 40 min</option>
+              <option>Wash, Cut &amp; Blow-Dry · £24 · 45 min</option>
             </select>
           </div>
         </div>
@@ -366,28 +372,33 @@
             <input id="bf-time" name="time" type="time" required />
           </div>
         </div>
-        <div class="field">
-          <label for="bf-barber">Barber <span class="optional">(optional)</span></label>
-          <select id="bf-barber" name="barber">
-            <option value="" selected>No preference, match me</option>
-            <option>Tony Marsh</option>
-            <option>Callum Reid</option>
-            <option>Marcus Bell</option>
-            <option>Priya Kaur</option>
-          </select>
+        <div class="booking-optional">
+          <p class="optional-divider"><span>Optional</span></p>
+          <div class="field">
+            <label for="bf-barber">Barber</label>
+            <select id="bf-barber" name="barber">
+              <option value="" selected>No preference, match me</option>
+              <option>Tony Marsh</option>
+              <option>Callum Reid</option>
+              <option>Marcus Bell</option>
+              <option>Priya Kaur</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-notes">Anything else?</label>
+            <textarea id="bf-notes" name="notes" rows="2" placeholder="First visit, a photo to match, accessibility needs…"></textarea>
+          </div>
         </div>
-        <div class="field">
-          <label for="bf-notes">Anything else? <span class="optional">(optional)</span></label>
-          <textarea id="bf-notes" name="notes" rows="3" placeholder="First visit, a photo to match, accessibility needs…"></textarea>
-        </div>
+        <p class="form-offer"><span class="form-offer-tag">10% off</span> your first visit when you book online</p>
         <button class="btn btn-primary btn-block" type="submit">Request booking</button>
+        <p class="form-walkin">Walk-ins welcome, but booking guarantees your time and your barber.</p>
         <p class="form-note" id="form-note">Demo form: we'll show a confirmation but nothing is sent yet. Ready to connect to Cal.com or your booking system.</p>
       </form>
     </div>
   </section>
 
   <!-- ===================== VISIT: HOURS + MAP ===================== -->
-  <section class="visit section section-sand" id="visit" aria-labelledby="visit-title">
+  <section class="visit section" id="visit" aria-labelledby="visit-title">
     <div class="wrap visit-grid">
       <div class="visit-info reveal">
         <p class="eyebrow">Find us</p>
@@ -450,7 +461,7 @@
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Team</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#gallery">Our work</a></li>
         <li><a href="#booking">Book now</a></li>
       </ul>
     </nav>
@@ -482,6 +493,6 @@
   <a class="ab-seg ab-book" href="#booking">Book a chair</a>
 </div>
 
-<script src="script.js?v=14" defer></script>
+<script src="script.js?v=15" defer></script>
 </body>
 </html>
