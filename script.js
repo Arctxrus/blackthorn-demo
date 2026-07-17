@@ -140,39 +140,6 @@
     });
   })();
 
-  /* ---- The Ritual: sticky pane swaps plates as steps scroll past ----
-     Progressive enhancement: default markup is a stacked list; the sticky
-     scrollytelling is layered on only on wide screens with motion allowed. */
-  (function () {
-    var ritual = document.getElementById("ritual");
-    if (!ritual) return;
-    var steps = Array.prototype.slice.call(ritual.querySelectorAll(".ritual-step"));
-    var plates = Array.prototype.slice.call(ritual.querySelectorAll(".ritual-plate"));
-    var cur = ritual.querySelector(".ritual-cur");
-    if (!steps.length) return;
-
-    function setActive(n) {
-      steps.forEach(function (s, i) { s.classList.toggle("is-active", i === n); });
-      plates.forEach(function (p, i) { p.classList.toggle("is-active", i === n); });
-      if (cur) cur.textContent = ("0" + (n + 1)).slice(-2);
-    }
-
-    if (!("IntersectionObserver" in window)) return;
-    if (!window.matchMedia("(min-width: 900px)").matches) return;
-    if (reduce) return;
-
-    ritual.classList.add("is-enhanced");
-    setActive(0);
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var idx = steps.indexOf(e.target);
-        if (idx > -1) setActive(idx);
-      });
-    }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
-    steps.forEach(function (s) { obs.observe(s); });
-  })();
-
   /* ---- The Work: expanding image accordion (hover/tap/keyboard) ---- */
   (function () {
     var acc = document.querySelector(".accordion");

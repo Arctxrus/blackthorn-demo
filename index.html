@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,400&family=Hanken+Grotesk:wght@400;500;700&family=Caveat:wght@500&display=swap" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241E18'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23C79A6A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
-<link rel="stylesheet" href="styles.css?v=17" />
+<link rel="stylesheet" href="styles.css?v=18" />
 
 <!-- Local business structured data -->
 <script type="application/ld+json">
@@ -122,7 +122,10 @@
       <div class="hero-lede reveal">
         <p class="hero-sub">Blackthorn &amp; Co. is Heywood's home for precise cuts, expert beard work and proper hot-towel shaves. Everyone's welcome, so sit back; we've got you.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#booking">Book your chair</a>
+          <div class="hero-actions-row">
+            <a class="btn btn-primary" href="#booking">Book your chair</a>
+            <a class="hero-see" href="#services">See the menu<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          </div>
           <p class="hero-aside">
             <a class="hero-offer" href="#booking"><span class="hero-offer-tag">10% off</span> your first visit</a>
             <span class="hero-aside-sep" aria-hidden="true">or</span>
@@ -148,6 +151,7 @@
           <p class="chapter-eyebrow reveal">Our story</p>
           <h2 id="shop-title" class="pullquote reveal">A neighbourhood shop that takes the craft seriously.</h2>
           <p class="shop-body reveal">We opened on Market Street in 2012 with one idea: proper barbering without the fuss. Barber-led but open to everyone, from a first haircut to a full hot towel shave. Expect an unhurried chair and a finish that still looks good a fortnight on.</p>
+          <p class="shop-hook reveal"><span class="shop-hook-mark">Every cut, your way.</span> The quiet chair or the chatty one, same price, your call.</p>
           <ul class="stat-row reveal">
             <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
             <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
@@ -174,46 +178,19 @@
       </header>
 
       <div class="ritual-head">
-        <h2 id="ritual-title" class="ritual-title reveal">The chair, step by step.</h2>
-        <p class="ritual-sub reveal">Every visit follows the same unhurried order. Four steps, no shortcuts.</p>
+        <h2 id="ritual-title" class="ritual-title reveal">What your cut buys.</h2>
+        <p class="ritual-sub reveal">The same four steps, every visit: consultation, cut, hot towel, finish. No rushing, no upsell, all in the price.</p>
       </div>
 
-      <div class="ritual-scroll">
-        <div class="ritual-media" aria-hidden="true">
-          <div class="ritual-track">
-            <div class="ritual-plate is-active" data-plate="0"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
-            <div class="ritual-plate" data-plate="1"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
-            <div class="ritual-plate" data-plate="2"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
-            <div class="ritual-plate" data-plate="3"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
-          </div>
-          <p class="ritual-progress"><span class="ritual-cur">01</span><span class="ritual-tot">&thinsp;/&thinsp;04</span></p>
-        </div>
-
-        <ol class="ritual-steps">
-          <li class="ritual-step is-active" data-step="0">
-            <span class="ritual-num">01</span>
-            <h3 class="ritual-step-title">Consultation</h3>
-            <p>We start at the mirror, not the clippers. A quick word about what you want, what suits, and how you like to keep it between visits.</p>
-            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=800&h=560&fit=crop&q=80" alt="A tan leather barber chair, ready before a cut" width="800" height="560" loading="lazy" /></figure>
-          </li>
-          <li class="ritual-step" data-step="1">
-            <span class="ritual-num">02</span>
-            <h3 class="ritual-step-title">The cut</h3>
-            <p>Scissor over comb, clipper work, a fade blended by eye. Taken slowly, checked from every angle, and never rushed to free up the chair.</p>
-            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=560&fit=crop&q=80" alt="A barber working a textured crop, mid-cut" width="800" height="560" loading="lazy" /></figure>
-          </li>
-          <li class="ritual-step" data-step="2">
-            <span class="ritual-num">03</span>
-            <h3 class="ritual-step-title">Hot towel</h3>
-            <p>A hot towel to soften and settle, then a close finish around the neck and edges. The bit regulars come back for on its own.</p>
-            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&h=560&fit=crop&q=80" alt="A hot towel laid on before the shave" width="800" height="560" loading="lazy" /></figure>
-          </li>
-          <li class="ritual-step" data-step="3">
-            <span class="ritual-num">04</span>
-            <h3 class="ritual-step-title">The finish</h3>
-            <p>A light product if you want it, a look in the mirror, and out you go. A cut that still sits right a fortnight on, not just on the day.</p>
-            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=560&fit=crop&q=80" alt="A clean, finished groom under warm light" width="800" height="560" loading="lazy" /></figure>
-          </li>
+      <div class="ritual-spread">
+        <figure class="ritual-plate reveal-left">
+          <img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=900&h=1100&fit=crop&q=80" alt="A hot towel shave in progress at Blackthorn &amp; Co." width="900" height="1100" loading="lazy" />
+        </figure>
+        <ol class="ritual-steps reveal-right">
+          <li class="ritual-step"><span class="ritual-num">01</span><div class="ritual-step-body"><h3 class="ritual-step-title">Consultation</h3><p>A word at the mirror about what you want and what suits.</p></div></li>
+          <li class="ritual-step"><span class="ritual-num">02</span><div class="ritual-step-body"><h3 class="ritual-step-title">The cut</h3><p>Scissor over comb and clipper work, blended by eye and never rushed.</p></div></li>
+          <li class="ritual-step"><span class="ritual-num">03</span><div class="ritual-step-body"><h3 class="ritual-step-title">Hot towel</h3><p>A hot towel to soften and settle, then a close, clean finish.</p></div></li>
+          <li class="ritual-step"><span class="ritual-num">04</span><div class="ritual-step-body"><h3 class="ritual-step-title">The finish</h3><p>A little product if you want it, and a cut that still sits right a fortnight on.</p></div></li>
         </ol>
       </div>
     </div>
@@ -236,12 +213,20 @@
 
       <div class="menu-layout">
         <div class="menu-board reveal">
+          <div class="menu-group menu-feature">
+            <h3 class="menu-cat">The full works</h3>
+            <ul>
+              <li class="menu-row"><span class="menu-name">The Full Works <span class="menu-note">Most booked</span></span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£52</span><span class="menu-dur">90 min</span><a class="menu-book" href="#booking" data-book-service="The Full Works · £52 · 90 min" aria-label="Book The Full Works">Book</a></li>
+            </ul>
+            <p class="menu-feature-note">Signature Cut, beard trim and a hot towel finish. Save £9 booking the three together.</p>
+          </div>
           <div class="menu-group">
             <h3 class="menu-cat">Cuts</h3>
             <ul>
               <li class="menu-row"><span class="menu-name">Signature Cut</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£22</span><span class="menu-dur">45 min</span><a class="menu-book" href="#booking" data-book-service="Signature Cut · £22 · 45 min" aria-label="Book the Signature Cut">Book</a></li>
               <li class="menu-row"><span class="menu-name">Skin Fade</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£20</span><span class="menu-dur">30 min</span><a class="menu-book" href="#booking" data-book-service="Skin Fade · £20 · 30 min" aria-label="Book the Skin Fade">Book</a></li>
               <li class="menu-row"><span class="menu-name">Kids' Cut <span class="menu-note">under 12</span></span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£12</span><span class="menu-dur">20 min</span><a class="menu-book" href="#booking" data-book-service="Kids' Cut · £12 · 20 min" aria-label="Book a Kids' Cut">Book</a></li>
+              <li class="menu-row"><span class="menu-name">Gents 65+ <span class="menu-note">Tue to Thu</span></span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£14</span><span class="menu-dur">30 min</span><a class="menu-book" href="#booking" data-book-service="Gents 65+ · £14 · 30 min" aria-label="Book the Gents 65 and over rate">Book</a></li>
             </ul>
           </div>
           <div class="menu-group">
@@ -289,6 +274,7 @@
               <span class="chair-name">Tony Marsh</span>
               <span class="chair-role">Founder &amp; master barber</span>
               <span class="chair-chips"><span class="chip">Classic cuts</span><span class="chip">Hot-towel shaves</span></span>
+              <span class="chair-quote">Old-school to the core. Not sure what you want? He'll talk you into a proper scissor cut.</span>
             </span>
             <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
@@ -301,6 +287,7 @@
               <span class="chair-name">Callum Reid</span>
               <span class="chair-role">Senior barber</span>
               <span class="chair-chips"><span class="chip">Skin fades</span><span class="chip">Beard sculpting</span></span>
+              <span class="chair-quote">Fades all day, and the quiet chair is usually his.</span>
             </span>
             <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
@@ -313,6 +300,7 @@
               <span class="chair-name">Marcus Bell</span>
               <span class="chair-role">Barber</span>
               <span class="chair-chips"><span class="chip">Textured &amp; Afro hair</span><span class="chip">Kids' cuts</span></span>
+              <span class="chair-quote">The best hands in the shop for textured hair, and he knows it.</span>
             </span>
             <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
@@ -325,6 +313,7 @@
               <span class="chair-name">Priya Kaur</span>
               <span class="chair-role">Stylist</span>
               <span class="chair-chips"><span class="chip">Women's cuts</span><span class="chip">Colour</span><span class="chip">Blow-dries</span></span>
+              <span class="chair-quote">Colour, a blow-dry, and the chat to match.</span>
             </span>
             <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
@@ -412,10 +401,14 @@
 
       <div class="quote-stage">
         <blockquote class="quote is-active" data-q="0">
+          <p class="quote-text">I walked in on a wet Tuesday not really knowing what I wanted. Tony talked it through at the mirror first, took his time over the cut, then finished with a hot towel that nearly sent me to sleep. I left forty minutes later with the sharpest fade I've had, and it still looked right a fortnight on. Not had a bad one since.</p>
+          <footer class="quote-by"><span class="stars" aria-hidden="true">★★★★★</span><span class="quote-name">James O.</span><span class="quote-src">Google review</span></footer>
+        </blockquote>
+        <blockquote class="quote" data-q="1">
           <p class="quote-text">Sharpest fade in Heywood, no question. Quick, spot on, and a proper laugh in the chair.</p>
           <footer class="quote-by"><span class="stars" aria-hidden="true">★★★★★</span><span class="quote-name">Danny K.</span><span class="quote-src">Google review</span></footer>
         </blockquote>
-        <blockquote class="quote" data-q="1">
+        <blockquote class="quote" data-q="2">
           <p class="quote-text">Booked a hot towel shave for my dad's 60th and the whole visit felt like a treat. Callum took his time and talked him through every step, and Dad has not stopped raving about it since. We have both switched over for good.</p>
           <footer class="quote-by"><span class="stars" aria-hidden="true">★★★★★</span><span class="quote-name">Sarah H.</span><span class="quote-src">Local Guide · Google</span></footer>
         </blockquote>
@@ -425,7 +418,7 @@
         <button type="button" class="quote-btn quote-prev" aria-label="Previous review">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
         </button>
-        <p class="quote-count" aria-live="polite"><span class="quote-cur">1</span> / <span class="quote-total">2</span></p>
+        <p class="quote-count" aria-live="polite"><span class="quote-cur">1</span> / <span class="quote-total">3</span></p>
         <button type="button" class="quote-btn quote-next" aria-label="Next review">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
         </button>
@@ -466,6 +459,10 @@
           <summary class="qa-q"><span class="qa-num">05</span><span class="qa-text">Do you sell gift vouchers?</span><span class="qa-caret" aria-hidden="true"></span></summary>
           <div class="qa-a"><p>We do. A hot-towel shave makes a cracking gift, so pop in or mention it when you book and we'll sort a voucher for any service or amount.</p></div>
         </details>
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">06</span><span class="qa-text">What's the quiet chair?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>Some days you want a chat, some days you just want to switch off. Tell us "quiet chair" when you book, or the chatty one if you fancy the banter. Same cut, same price, no awkwardness either way.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -491,6 +488,7 @@
           <li>Free to change or cancel up to 4 hours before</li>
           <li>Request a specific barber, or let us match you</li>
         </ul>
+        <p class="book-proof reveal"><span class="stars" aria-hidden="true">★★★★★</span> Rated <strong>4.9</strong> on Google, from 214 reviews</p>
       </div>
 
       <!-- Swap this whole form block for a Cal.com embed when ready:
@@ -509,12 +507,14 @@
             <label for="bf-service">Service</label>
             <select id="bf-service" name="service" required>
               <option value="" selected disabled>Choose a service…</option>
+              <option>The Full Works · £52 · 90 min</option>
               <option>Signature Cut · £22 · 45 min</option>
               <option>Skin Fade · £20 · 30 min</option>
               <option>Kids' Cut · £12 · 20 min</option>
               <option>Beard Trim &amp; Shape · £14 · 20 min</option>
               <option>Hot Towel Shave · £25 · 40 min</option>
               <option>Wash, Cut &amp; Blow-Dry · £24 · 45 min</option>
+              <option>Gents 65+ · £14 · 30 min</option>
             </select>
           </div>
         </div>
@@ -540,6 +540,14 @@
               <option>Priya Kaur</option>
             </select>
           </div>
+          <fieldset class="field field-choice">
+            <legend class="field-legend">Your chair</legend>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="chair" value="Quiet chair" /><span>Quiet chair</span></label>
+              <label class="choice"><input type="radio" name="chair" value="Happy to chat" /><span>Happy to chat</span></label>
+              <label class="choice"><input type="radio" name="chair" value="No preference" checked /><span>No preference</span></label>
+            </div>
+          </fieldset>
           <div class="field">
             <label for="bf-notes">Anything else?</label>
             <textarea id="bf-notes" name="notes" rows="2" placeholder="First visit, a photo to match, accessibility needs…"></textarea>
@@ -666,6 +674,6 @@
   <a class="ab-seg ab-book" href="#booking">Book a chair</a>
 </div>
 
-<script src="script.js?v=17" defer></script>
+<script src="script.js?v=18" defer></script>
 </body>
 </html>

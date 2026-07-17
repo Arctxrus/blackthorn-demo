@@ -73,7 +73,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 
 /* ---------- Layout helpers ---------- */
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
-.section{padding-block:clamp(3.25rem, 8vw, 6rem)}
+.section{padding-block:clamp(2.25rem, 6vw, 6rem)}
 .section-sand{background:var(--sand)}
 
 /* ---------- Editorial type helpers ---------- */
@@ -203,7 +203,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   border:1px solid var(--border);box-shadow:var(--shadow-lg);
   background:var(--sand);
 }
-.hero-arch img{width:100%;height:clamp(360px,80vw,560px);object-fit:cover}
+.hero-arch img{width:100%;height:clamp(300px,66vw,560px);object-fit:cover}
 .hero-badge{
   position:absolute;left:-6px;bottom:18px;
   background:var(--espresso);color:var(--cream-on-dark);
@@ -218,6 +218,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-sub{color:var(--muted-text);font-size:1.12rem;max-width:42ch;margin:0}
 .hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;margin-top:1.5rem}
 .hero-cta .btn{min-width:12rem}
+.hero-actions-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.4rem}
+.hero-see{display:inline-flex;align-items:center;gap:.35rem;min-height:44px;font-family:var(--font-body);font-weight:700;color:var(--caramel);text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--caramel) 40%,transparent);transition:border-color .18s var(--ease-out)}
+.hero-see:hover{border-bottom-color:var(--caramel)}
+.hero-see svg{transition:transform .18s var(--ease-out)}
+.hero-see:hover svg{transform:translateY(2px)}
 .hero-aside{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0;color:var(--muted-text);font-size:.95rem}
 .hero-aside-sep{color:var(--rule)}
 .hero-offer{display:inline-flex;align-items:center;gap:.45rem;padding:.28rem .7rem .28rem .35rem;border-radius:999px;background:color-mix(in srgb, var(--caramel) 9%, transparent);border:1px solid color-mix(in srgb, var(--caramel) 26%, transparent);color:var(--muted-text);font-size:.86rem;font-weight:500;text-decoration:none;transition:background .18s var(--ease-out),border-color .18s var(--ease-out),transform .18s var(--ease-out)}
@@ -239,37 +244,31 @@ ul,ol{margin:0;padding:0;list-style:none}
 .stat-star{color:var(--tan);font-size:1.2rem}
 .stat-label{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-text)}
 .shop-plate{margin:0}
-.shop-plate img{width:100%;height:clamp(320px,60vw,520px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+.shop-plate img{width:100%;height:clamp(230px,48vw,520px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
 .shop-plate figcaption{margin-top:.6rem;font-family:var(--font-body);font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-text)}
+.shop-hook{margin-top:1.1rem;font-size:1.05rem;color:var(--ink);max-width:46ch}
+.shop-hook-mark{font-family:var(--font-display);font-style:italic;font-weight:600;color:var(--caramel)}
 
-/* ---------- 02 · The Ritual (scrollytelling) ---------- */
+/* ---------- 02 · The Ritual (compact value spread) ---------- */
 .ritual-head{margin-bottom:clamp(1.5rem,4vw,2.5rem)}
 .ritual-title{font-size:clamp(1.9rem,4.5vw,3rem)}
-.ritual-sub{color:var(--muted-text);margin:.6rem 0 0;max-width:42ch}
-/* default = stacked (mobile / reduced-motion / no-JS) */
-.ritual-media{display:none}
-.ritual-steps{display:flex;flex-direction:column;gap:clamp(2rem,5vw,2.75rem)}
-.ritual-num{font-family:var(--font-display);font-weight:900;font-size:1.7rem;color:var(--caramel);display:block;line-height:1;font-variant-numeric:tabular-nums}
-.ritual-step-title{font-size:1.45rem;margin:.35rem 0 .5rem}
-.ritual-step p{color:var(--muted-text);max-width:48ch;margin:0 0 1rem}
-.ritual-step-fig{margin:0}
-.ritual-step-fig img{width:100%;height:clamp(220px,58vw,360px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
-/* enhanced = sticky pane + swapping plates (added by JS on desktop, motion OK) */
-.ritual.is-enhanced .ritual-scroll{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
-.ritual.is-enhanced .ritual-media{display:block;position:sticky;top:calc(var(--header-h) + 2.25rem);height:min(72vh,600px)}
-.ritual.is-enhanced .ritual-track{position:relative;width:100%;height:100%;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md);background:var(--sand)}
-.ritual.is-enhanced .ritual-plate{position:absolute;inset:0;opacity:0;transform:scale(1.03);transition:opacity .6s var(--ease-out),transform .9s var(--ease-out)}
-.ritual.is-enhanced .ritual-plate.is-active{opacity:1;transform:none}
-.ritual.is-enhanced .ritual-plate img{width:100%;height:100%;object-fit:cover}
-.ritual.is-enhanced .ritual-progress{position:absolute;left:1rem;bottom:.9rem;z-index:2;margin:0;font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:var(--cream);text-shadow:0 1px 10px rgba(20,14,8,.6)}
-.ritual.is-enhanced .ritual-progress .ritual-tot{color:var(--tan);font-size:1rem}
-.ritual.is-enhanced .ritual-steps{display:block}
-.ritual.is-enhanced .ritual-step{min-height:74vh;display:flex;flex-direction:column;justify-content:center;opacity:.38;transition:opacity .45s var(--ease-out)}
-.ritual.is-enhanced .ritual-step.is-active{opacity:1}
-.ritual.is-enhanced .ritual-step-fig{display:none}
-.ritual.is-enhanced .ritual-num{font-size:2.6rem}
-.ritual.is-enhanced .ritual-step-title{font-size:1.9rem}
-.ritual.is-enhanced .ritual-step p{font-size:1.12rem;max-width:38ch}
+.ritual-sub{color:var(--muted-text);margin:.6rem 0 0;max-width:54ch}
+.ritual-spread{display:grid;gap:clamp(1.5rem,4vw,3rem)}
+.ritual-plate{margin:0}
+.ritual-plate img{width:100%;height:clamp(280px,58vw,440px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+.ritual-steps{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.ritual-step{display:flex;gap:1rem;align-items:baseline;padding:1rem .1rem;border-bottom:1px solid var(--rule)}
+.ritual-num{font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:var(--caramel);font-variant-numeric:tabular-nums;flex:0 0 1.6em;line-height:1}
+.ritual-step-body{min-width:0}
+.ritual-step-title{font-size:1.2rem;margin:0 0 .2rem}
+.ritual-step-body p{color:var(--muted-text);margin:0}
+@media(max-width:767px){
+  /* keep prices close to the top: the ritual plate is decorative on mobile */
+  .ritual-plate{display:none}
+}
+@media(min-width:768px){
+  .ritual-spread{grid-template-columns:5fr 6fr;align-items:center}
+}
 
 /* ---------- 03 · The Menu (letterpress price list) ---------- */
 .menu-head{margin-bottom:clamp(1.5rem,4vw,2.5rem)}
@@ -293,6 +292,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-book:focus-visible{outline:2px solid var(--caramel);outline-offset:1px}
 .menu-plate{margin:0}
 .menu-plate img{width:100%;height:clamp(260px,50vw,100%);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+.menu-feature{background:color-mix(in srgb,var(--tan) 12%,transparent);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem .9rem}
+.menu-feature .menu-cat{border-bottom-color:color-mix(in srgb,var(--caramel) 32%,transparent)}
+.menu-feature .menu-row{padding-top:.35rem}
+.menu-feature-note{margin:.35rem 0 0;color:var(--muted-text);font-size:.86rem}
 
 /* ---------- 04 · The Chairs (team roster) ---------- */
 .chairs-head{margin-bottom:clamp(1.5rem,4vw,2rem)}
@@ -312,6 +315,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .chair-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
 .chip{font-family:var(--font-body);font-weight:700;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-text);background:color-mix(in srgb,var(--tan) 20%,var(--cream));border:1px solid var(--border);padding:.2rem .45rem;border-radius:6px;white-space:nowrap}
 .chair-cta{display:none}
+.chair-quote{color:var(--muted-text);font-size:.9rem;font-style:italic;margin-top:.4rem;max-width:46ch}
 
 /* ---------- 05 · The Work (expanding accordion / mobile spread) ---------- */
 .work-head{margin-bottom:clamp(1.5rem,4vw,2rem)}
@@ -343,7 +347,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .quote-stage{display:grid;max-width:58rem}
 .quote{grid-area:1/1;margin:0;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);pointer-events:none}
 .quote.is-active{opacity:1;transform:none;pointer-events:auto}
-.quote-text{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.22;color:var(--cream);margin:0}
+.quote-text{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:clamp(1.4rem,3.3vw,2.35rem);line-height:1.24;color:var(--cream);margin:0}
 .quote-text::before{content:"\201C";color:var(--tan);margin-right:.02em}
 .quote-text::after{content:"\201D";color:var(--tan);margin-left:.02em}
 .quote-by{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
@@ -386,14 +390,25 @@ ul,ol{margin:0;padding:0;list-style:none}
 .field{margin-bottom:1.2rem}
 .field-row{display:grid;gap:1.2rem}
 .book-form .field label{display:block;font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-text);margin-bottom:.35rem}
-.book-form input,.book-form select,.book-form textarea{
+.book-form input:not([type="radio"]),.book-form select,.book-form textarea{
   width:100%;min-height:48px;padding:.6rem .15rem;
   font-family:var(--font-body);font-size:1.05rem;color:var(--ink);
   background:transparent;border:0;border-bottom:1.5px solid var(--rule);border-radius:0}
 .book-form textarea{min-height:auto;resize:vertical;padding-top:.5rem}
 .book-form input::placeholder,.book-form textarea::placeholder{color:color-mix(in srgb,var(--muted-text) 65%,transparent)}
-.book-form input:focus,.book-form select:focus,.book-form textarea:focus{border-bottom-color:var(--caramel);border-bottom-width:2px}
-.book-form input:focus-visible,.book-form select:focus-visible,.book-form textarea:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+.book-form input:not([type="radio"]):focus,.book-form select:focus,.book-form textarea:focus{border-bottom-color:var(--caramel);border-bottom-width:2px}
+.book-form input:not([type="radio"]):focus-visible,.book-form select:focus-visible,.book-form textarea:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+/* Quiet-chair preference (optional radio group) */
+.field-choice{border:0;margin:0 0 1.2rem;padding:0;min-width:0}
+.field-legend{display:block;font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-text);margin-bottom:.55rem;padding:0}
+.choice-row{display:flex;flex-wrap:wrap;gap:.55rem}
+.choice{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.5rem .9rem;border:1px solid var(--rule);border-radius:999px;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .18s var(--ease-out),background-color .18s var(--ease-out)}
+.choice input{width:auto;min-height:auto;margin:0;accent-color:var(--caramel)}
+.choice:has(input:checked){border-color:var(--caramel);background:color-mix(in srgb,var(--caramel) 10%,transparent)}
+.choice:focus-within{outline:2px solid var(--caramel);outline-offset:2px}
+.book-proof{display:flex;align-items:center;gap:.5rem;margin:1rem 0 0;font-size:.9rem;color:var(--muted-text)}
+.book-proof .stars{color:var(--tan)}
+.book-proof strong{color:var(--ink);font-family:var(--font-display);font-weight:600}
 .field.has-error input,.field.has-error select,.field.has-error textarea{border-bottom-color:var(--error)}
 .field.has-error input:focus,.field.has-error select:focus,.field.has-error textarea:focus{border-bottom-color:var(--error);outline-color:var(--error)}
 .field-error{display:flex;align-items:flex-start;gap:.3rem;color:var(--error);font-size:.85rem;font-weight:500;margin:.4rem 0 0}
@@ -574,5 +589,5 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   html:focus-within{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;transition-delay:0ms !important;animation-delay:0ms !important}
   .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
-  .ritual-step,.quote{opacity:1 !important;transform:none !important}
+  .quote{opacity:1 !important;transform:none !important}
 }
