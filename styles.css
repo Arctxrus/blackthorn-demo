@@ -48,7 +48,7 @@ body{
   font-size:1.0625rem;
   line-height:1.6;
   color:var(--ink);
-  background:var(--cream);
+  background:#F6EFE2; /* warm base — uniform behind the floating nav pill and the hero */
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
@@ -128,12 +128,12 @@ ul{margin:0;padding:0;list-style:none}
   -webkit-backdrop-filter:saturate(1.5) blur(14px);
   backdrop-filter:saturate(1.5) blur(14px);
   border:1px solid color-mix(in srgb, var(--border) 65%, transparent);
-  box-shadow:0 10px 30px -14px rgba(38,32,26,.30);
+  box-shadow:0 5px 16px -8px rgba(38,32,26,.24);
   transition:box-shadow .28s var(--ease-out), background-color .28s var(--ease-out);
 }
 .site-header.scrolled .header-inner{
   background:color-mix(in srgb, var(--cream) 90%, transparent);
-  box-shadow:0 14px 34px -12px rgba(38,32,26,.42);
+  box-shadow:0 8px 22px -10px rgba(38,32,26,.32);
 }
 /* Solid cream fallback where backdrop-filter is unsupported */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
@@ -186,12 +186,7 @@ ul{margin:0;padding:0;list-style:none}
 .mobile-menu>.btn{animation-delay:.24s}
 
 /* ---------- Hero ---------- */
-.hero{padding-top:clamp(1.5rem,5vw,3rem);padding-bottom:clamp(2rem,6vw,3.5rem);position:relative;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;inset:-20% 40% auto -20%;height:70%;
-  background:radial-gradient(60% 60% at 40% 40%, rgba(199,154,106,.20), transparent 70%);
-  pointer-events:none;z-index:0;
-}
+.hero{padding-top:clamp(1.5rem,5vw,3rem);padding-bottom:clamp(2rem,6vw,3.5rem);position:relative}
 .hero-grid{position:relative;z-index:1;display:grid;gap:clamp(1.75rem,5vw,2.5rem)}
 .hero-copy{align-self:center}
 .hero h1{font-weight:900;font-size:clamp(2.5rem,8.5vw,4.6rem);letter-spacing:-.015em}
@@ -523,9 +518,6 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   .primary-nav ul{gap:1.5rem}   /* a touch more breathing room on desktop */
 }
 
-@media (min-width:1280px){
-  .hero::before{inset:-25% 45% auto -10%}
-}
 
 /* ---------- Motion / a11y ---------- */
 @media (prefers-reduced-motion:reduce){
