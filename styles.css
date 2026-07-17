@@ -106,23 +106,37 @@ ul{margin:0;padding:0;list-style:none}
 .btn-mini{min-height:44px;padding:.55rem 1.15rem;font-size:.9rem}
 .btn-block{display:flex;width:100%}
 .btn:focus-visible{outline:2px solid var(--caramel);outline-offset:3px}
-.btn-ghost-dark:focus-visible,.action-bar .btn:focus-visible{outline-color:var(--tan)}
+.btn-ghost-dark:focus-visible{outline-color:var(--tan)}
 
 .stars{color:var(--star);letter-spacing:.08em;font-size:.95rem}
 
 /* ---------- Header / Nav ---------- */
 .site-header{
   position:sticky;top:0;z-index:100;
-  background:color-mix(in srgb, var(--cream) 88%, transparent);
-  -webkit-backdrop-filter:saturate(1.1) blur(10px);
-  backdrop-filter:saturate(1.1) blur(10px);
-  border-bottom:1px solid var(--border);
+  padding:clamp(12px,1.4vw,15px) clamp(12px,1.8vw,16px) 0;
+  background:transparent;
 }
-/* Elevation once scrolled past the top (opacity-only, no layout shift) */
-.site-header::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:0 8px 26px -16px rgba(38,32,26,.55);opacity:0;transition:opacity .28s var(--ease-out)}
-.site-header.scrolled::after{opacity:1}
 #scroll-sentinel{position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none}
-.header-inner{display:flex;align-items:center;gap:.6rem;min-height:var(--header-h)}
+/* Floating frosted pill */
+.header-inner{
+  display:flex;align-items:center;gap:.6rem;min-height:var(--header-h);
+  padding-inline:clamp(1rem,2.2vw,1.5rem);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--cream) 82%, transparent);
+  -webkit-backdrop-filter:saturate(1.5) blur(14px);
+  backdrop-filter:saturate(1.5) blur(14px);
+  border:1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  box-shadow:0 10px 30px -14px rgba(38,32,26,.30);
+  transition:box-shadow .28s var(--ease-out), background-color .28s var(--ease-out);
+}
+.site-header.scrolled .header-inner{
+  background:color-mix(in srgb, var(--cream) 90%, transparent);
+  box-shadow:0 14px 34px -12px rgba(38,32,26,.42);
+}
+/* Solid cream fallback where backdrop-filter is unsupported */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .header-inner,.site-header.scrolled .header-inner{background:var(--cream)}
+}
 .brand{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink);font-weight:700}
 .brand-mark{
   display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
@@ -144,7 +158,12 @@ ul{margin:0;padding:0;list-style:none}
 .nav-toggle[aria-expanded="true"] .i-close{display:block}
 .nav-toggle:focus-visible{outline:2px solid var(--caramel);outline-offset:2px}
 
-.mobile-menu{border-bottom:1px solid var(--border);background:var(--cream);padding:.5rem var(--gutter) 1.25rem}
+.mobile-menu{margin-top:8px;border-radius:22px;padding:.5rem 1.1rem 1.15rem;
+  background:color-mix(in srgb, var(--cream) 92%, transparent);
+  -webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px);
+  border:1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  box-shadow:0 16px 36px -14px rgba(38,32,26,.36)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.mobile-menu{background:var(--cream)}}
 .mobile-menu ul{display:flex;flex-direction:column}
 .mobile-menu ul a{display:block;padding:.85rem .25rem;color:var(--ink);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border)}
 .mobile-menu .btn{margin-top:1rem}
@@ -398,16 +417,24 @@ ul{margin:0;padding:0;list-style:none}
 
 /* ---------- Sticky mobile action bar ---------- */
 .action-bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:90;
-  display:flex;gap:.6rem;padding:.6rem var(--gutter);
-  padding-bottom:calc(.6rem + env(safe-area-inset-bottom));
-  background:color-mix(in srgb,var(--espresso) 94%, transparent);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  border-top:1px solid rgba(250,246,239,.14);
+  position:fixed;z-index:90;
+  left:clamp(12px,3vw,16px);right:clamp(12px,3vw,16px);
+  bottom:calc(clamp(12px,2.5vw,14px) + env(safe-area-inset-bottom));
+  display:flex;gap:.5rem;padding:.45rem;
+  border-radius:999px;
+  background:color-mix(in srgb, var(--cream) 84%, transparent);
+  -webkit-backdrop-filter:saturate(1.5) blur(14px);
+  backdrop-filter:saturate(1.5) blur(14px);
+  border:1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  box-shadow:0 14px 32px -10px rgba(38,32,26,.4);
 }
-.action-bar .btn{flex:1}
-.action-bar .btn-ghost-dark{flex:0 0 40%}
-body{padding-bottom:76px} /* room for the action bar on mobile */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .action-bar{background:var(--cream)}
+}
+.action-bar .btn{flex:1;min-height:48px}
+.action-bar .btn-ghost{flex:0 0 38%}
+/* room so the floating bar never permanently covers the footer / last section */
+body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 
 /* ---------- Reveal animation ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
