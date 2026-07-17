@@ -122,7 +122,7 @@ ul{margin:0;padding:0;list-style:none}
 /* Floating frosted pill */
 .header-inner{
   display:flex;align-items:center;gap:.6rem;min-height:var(--header-h);
-  padding-inline:clamp(1rem,2.2vw,1.5rem);
+  padding-inline:clamp(1.35rem,2.4vw,1.9rem);
   border-radius:999px;
   background:color-mix(in srgb, var(--cream) 82%, transparent);
   -webkit-backdrop-filter:saturate(1.5) blur(14px);
@@ -152,7 +152,7 @@ ul{margin:0;padding:0;list-style:none}
 
 .nav-toggle{
   margin-left:auto;display:inline-grid;place-items:center;
-  width:46px;height:46px;border:1px solid var(--border);border-radius:12px;
+  width:46px;height:46px;border:1px solid var(--border);border-radius:50%;
   background:var(--ivory);color:var(--ink);cursor:pointer;
 }
 .nav-toggle .i-close{display:none}
@@ -170,8 +170,8 @@ ul{margin:0;padding:0;list-style:none}
 .mobile-menu ul a{display:block;padding:.85rem .25rem;color:var(--ink);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border)}
 .mobile-menu .btn{margin-top:1rem}
 /* Drop-down animation: panel fades, items cascade in (replays each open via display toggle) */
-.mobile-menu{animation:menu-fade .22s var(--ease-out) both}
-@keyframes menu-fade{from{opacity:0}to{opacity:1}}
+.mobile-menu{overflow:hidden;animation:menu-grow .42s cubic-bezier(.2,.68,.32,1)}
+@keyframes menu-grow{from{max-height:0;opacity:.4}to{max-height:520px;opacity:1}}
 @keyframes menu-item-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 .mobile-menu ul li a,.mobile-menu>.btn{animation:menu-item-in .34s var(--ease-out) both}
 .mobile-menu ul li:nth-child(1) a{animation-delay:.03s}
@@ -518,6 +518,7 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 @media (min-width:1024px){
   .team-grid{grid-template-columns:repeat(4,1fr)}
   .hero h1{font-size:clamp(3rem,5vw,4.6rem)}
+  .primary-nav ul{gap:1.5rem}   /* a touch more breathing room on desktop */
 }
 
 @media (min-width:1280px){
