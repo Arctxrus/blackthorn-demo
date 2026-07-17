@@ -2,14 +2,40 @@
 (function () {
   "use strict";
 
-  /* ---- Mobile menu toggle ---- */
+  /* ---- Mobile menu: animated open (grow) + close (collapse) ---- */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("mobile-menu");
   if (toggle && menu) {
+    var closeHandler = null;
+    var clearClose = function () {
+      if (closeHandler) { menu.removeEventListener("transitionend", closeHandler); closeHandler = null; }
+    };
     var setMenu = function (open) {
       toggle.setAttribute("aria-expanded", String(open));
-      menu.hidden = !open;
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      if (open) {
+        clearClose();
+        menu.classList.remove("is-closing");
+        menu.style.maxHeight = "";
+        menu.style.opacity = "";
+        menu.hidden = false;
+      } else {
+        if (menu.hidden || menu.classList.contains("is-closing")) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { menu.hidden = true; return; }
+        menu.style.maxHeight = menu.scrollHeight + "px";
+        void menu.offsetWidth; // commit the current height as the transition start
+        menu.classList.add("is-closing");
+        menu.style.maxHeight = "0px";
+        closeHandler = function (e) {
+          if (e.target !== menu || e.propertyName !== "max-height") return;
+          clearClose();
+          menu.hidden = true;
+          menu.classList.remove("is-closing");
+          menu.style.maxHeight = "";
+          menu.style.opacity = "";
+        };
+        menu.addEventListener("transitionend", closeHandler);
+      }
     };
     toggle.addEventListener("click", function () {
       setMenu(toggle.getAttribute("aria-expanded") !== "true");
