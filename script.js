@@ -2,6 +2,8 @@
 (function () {
   "use strict";
 
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---- Mobile menu: animated open (grow) + close (collapse) ---- */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("mobile-menu");
@@ -21,9 +23,9 @@
         menu.hidden = false;
       } else {
         if (menu.hidden || menu.classList.contains("is-closing")) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { menu.hidden = true; return; }
+        if (reduce) { menu.hidden = true; return; }
         menu.style.maxHeight = menu.scrollHeight + "px";
-        void menu.offsetWidth; // commit the current height as the transition start
+        void menu.offsetWidth;
         menu.classList.add("is-closing");
         menu.style.maxHeight = "0px";
         closeHandler = function (e) {
@@ -40,11 +42,9 @@
     toggle.addEventListener("click", function () {
       setMenu(toggle.getAttribute("aria-expanded") !== "true");
     });
-    // Close after tapping a link
     menu.addEventListener("click", function (e) {
       if (e.target.closest("a")) setMenu(false);
     });
-    // Close on Escape
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
         setMenu(false);
@@ -54,7 +54,7 @@
   }
 
   /* ---- FAQ: keep only one open at a time (still works if JS off) ---- */
-  var faqItems = Array.prototype.slice.call(document.querySelectorAll(".faq-item"));
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll(".qa"));
   faqItems.forEach(function (item) {
     item.addEventListener("toggle", function () {
       if (!item.open) return;
@@ -63,8 +63,6 @@
       });
     });
   });
-
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Sticky header gains elevation once scrolled past the top ---- */
   var header = document.querySelector(".site-header");
@@ -87,14 +85,13 @@
       if (sec) { map[id] = a; sections.push(sec); }
     });
     if (!sections.length) return;
-    // order by document position so scroll-spy tracks actual page order (nav order may differ)
     sections.sort(function (a, b) {
       return (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
     });
     var current = null;
 
     function movePill(link, instant) {
-      if (!link || pnav.offsetParent === null) return; // nav hidden (mobile)
+      if (!link || pnav.offsetParent === null) return;
       var nr = pnav.getBoundingClientRect(), lr = link.getBoundingClientRect();
       if (instant) pill.style.transition = "none";
       pill.style.width = (lr.width + 16) + "px";
@@ -143,8 +140,118 @@
     });
   })();
 
-  /* ---- Scroll reveal (respects reduced-motion) + 60ms card stagger ---- */
-  var STAGGER = ".service-card, .team-card, .review-card, .g-item";
+  /* ---- The Ritual: sticky pane swaps plates as steps scroll past ----
+     Progressive enhancement: default markup is a stacked list; the sticky
+     scrollytelling is layered on only on wide screens with motion allowed. */
+  (function () {
+    var ritual = document.getElementById("ritual");
+    if (!ritual) return;
+    var steps = Array.prototype.slice.call(ritual.querySelectorAll(".ritual-step"));
+    var plates = Array.prototype.slice.call(ritual.querySelectorAll(".ritual-plate"));
+    var cur = ritual.querySelector(".ritual-cur");
+    if (!steps.length) return;
+
+    function setActive(n) {
+      steps.forEach(function (s, i) { s.classList.toggle("is-active", i === n); });
+      plates.forEach(function (p, i) { p.classList.toggle("is-active", i === n); });
+      if (cur) cur.textContent = ("0" + (n + 1)).slice(-2);
+    }
+
+    if (!("IntersectionObserver" in window)) return;
+    if (!window.matchMedia("(min-width: 900px)").matches) return;
+    if (reduce) return;
+
+    ritual.classList.add("is-enhanced");
+    setActive(0);
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var idx = steps.indexOf(e.target);
+        if (idx > -1) setActive(idx);
+      });
+    }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+    steps.forEach(function (s) { obs.observe(s); });
+  })();
+
+  /* ---- The Work: expanding image accordion (hover/tap/keyboard) ---- */
+  (function () {
+    var acc = document.querySelector(".accordion");
+    if (!acc) return;
+    var panels = Array.prototype.slice.call(acc.querySelectorAll(".acc-panel"));
+    var btns = panels.map(function (p) { return p.querySelector(".acc-btn"); });
+    function open(idx) {
+      panels.forEach(function (p, i) {
+        var on = i === idx;
+        p.classList.toggle("is-open", on);
+        if (btns[i]) btns[i].setAttribute("aria-expanded", on ? "true" : "false");
+      });
+    }
+    btns.forEach(function (b, idx) {
+      if (!b) return;
+      b.addEventListener("click", function () { open(idx); });
+      b.addEventListener("focus", function () { open(idx); });
+      b.addEventListener("keydown", function (e) {
+        var n = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") n = idx + 1;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = idx - 1;
+        else if (e.key === "Home") n = 0;
+        else if (e.key === "End") n = btns.length - 1;
+        if (n === null) return;
+        e.preventDefault();
+        n = (n + btns.length) % btns.length;
+        if (btns[n]) btns[n].focus();
+      });
+    });
+  })();
+
+  /* ---- Reviews: one rotating pull-quote, manual prev/next (no autoplay) ---- */
+  (function () {
+    var stage = document.querySelector(".quote-stage");
+    if (!stage) return;
+    var quotes = Array.prototype.slice.call(stage.querySelectorAll(".quote"));
+    if (!quotes.length) return;
+    var prev = document.querySelector(".quote-prev");
+    var next = document.querySelector(".quote-next");
+    var cur = document.querySelector(".quote-cur");
+    var tot = document.querySelector(".quote-total");
+    var i = 0;
+    if (tot) tot.textContent = String(quotes.length);
+    function show(n) {
+      i = (n + quotes.length) % quotes.length;
+      quotes.forEach(function (q, idx) { q.classList.toggle("is-active", idx === i); });
+      if (cur) cur.textContent = String(i + 1);
+    }
+    if (prev) prev.addEventListener("click", function () { show(i - 1); });
+    if (next) next.addEventListener("click", function () { show(i + 1); });
+    show(0);
+  })();
+
+  /* ---- Deep links: Menu line / Chair pre-fills the booking form ---- */
+  (function () {
+    function prefill(select, value) {
+      if (!select || !value) return;
+      var want = value.trim(), opts = select.options;
+      for (var j = 0; j < opts.length; j++) {
+        if (opts[j].text.trim() === want) {
+          select.selectedIndex = j;
+          try { select.dispatchEvent(new Event("change", { bubbles: true })); } catch (err) {}
+          return;
+        }
+      }
+    }
+    var links = Array.prototype.slice.call(document.querySelectorAll("[data-book-service],[data-book-barber]"));
+    links.forEach(function (el) {
+      el.addEventListener("click", function () {
+        var svc = el.getAttribute("data-book-service");
+        var bar = el.getAttribute("data-book-barber");
+        if (svc) prefill(document.getElementById("bf-service"), svc);
+        if (bar) prefill(document.getElementById("bf-barber"), bar);
+      });
+    });
+  })();
+
+  /* ---- Scroll reveal (respects reduced-motion) + 60ms stagger ---- */
+  var STAGGER = ".chair";
   var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal, .reveal-left, .reveal-right"));
   if (reduce || !("IntersectionObserver" in window)) {
     reveals.forEach(function (el) { el.classList.add("is-in"); });
@@ -153,7 +260,6 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var el = entry.target;
-        // Stagger grid cards by DOM order; clear the delay after so hover stays snappy
         if (el.parentElement && el.matches(STAGGER)) {
           var idx = Array.prototype.indexOf.call(el.parentElement.children, el);
           el.style.transitionDelay = (idx * 60) + "ms";
@@ -169,7 +275,7 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---- Count-up: reviews rating/count and About stats, each when its group enters ---- */
+  /* ---- Count-up: reviews rating/count and Shop stats ---- */
   var counters = Array.prototype.slice.call(document.querySelectorAll(".countup"));
   if (counters.length) {
     var setFinal = function (el) {
@@ -178,9 +284,8 @@
       el.textContent = dec ? to.toFixed(dec) : String(Math.round(to));
     };
     if (reduce || !("IntersectionObserver" in window) || !window.requestAnimationFrame) {
-      counters.forEach(setFinal); // skip straight to final state
+      counters.forEach(setFinal);
     } else {
-      // Reserve width for the final value so digits never shift neighbours, then zero out
       counters.forEach(function (el) {
         el.style.minWidth = el.textContent.trim().length + "ch";
         var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
@@ -192,7 +297,7 @@
         var dur = 1100, start = performance.now();
         (function frame(now) {
           var p = Math.min(1, (now - start) / dur);
-          var v = to * (1 - Math.pow(1 - p, 3)); // ease-out cubic
+          var v = to * (1 - Math.pow(1 - p, 3));
           el.textContent = dec ? v.toFixed(dec) : String(Math.round(v));
           if (p < 1) requestAnimationFrame(frame); else setFinal(el);
         })(start);
@@ -215,10 +320,9 @@
     }
   }
 
-  /* ---- Booking form: custom validation + demo success (swap for Cal.com / real endpoint) ---- */
+  /* ---- Booking form: custom validation + demo success ---- */
   var form = document.getElementById("booking-form");
   if (form) {
-    // Restrict past dates
     var dateField = form.querySelector('input[type="date"]');
     if (dateField) {
       var t = new Date();
@@ -227,7 +331,6 @@
         String(t.getDate()).padStart(2, "0");
     }
 
-    // Accepts UK mobiles like 07123 456789, 07123456789, +44 7123 456789, +447123456789
     function isUkMobile(v) {
       return /^(?:\+44|0)7\d{9}$/.test(v.replace(/[\s()\-.]/g, ""));
     }
@@ -268,7 +371,6 @@
       el.setAttribute("aria-describedby", err.id);
     }
 
-    // Clear each error live as the user fixes it
     checks.forEach(function (c) {
       var el = document.getElementById(c.id);
       if (!el) return;
@@ -288,7 +390,6 @@
       });
       if (firstInvalid) { firstInvalid.focus(); return; }
 
-      // All valid; demo success (no backend). Replace form with a styled confirmation.
       var name = (document.getElementById("bf-name") || {}).value || "";
       var first = name.trim().split(/\s+/)[0].replace(/[<>&]/g, "");
       form.innerHTML =

@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,400&family=Hanken+Grotesk:wght@400;500;700&family=Caveat:wght@500&display=swap" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241E18'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23C79A6A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
-<link rel="stylesheet" href="styles.css?v=16" />
+<link rel="stylesheet" href="styles.css?v=17" />
 
 <!-- Local business structured data -->
 <script type="application/ld+json">
@@ -68,12 +68,11 @@
     <nav class="primary-nav" aria-label="Primary">
       <span class="nav-pill" aria-hidden="true"></span>
       <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#gallery">Our work</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#about">Story</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#ritual">Ritual</a></li>
+        <li><a href="#services">Menu</a></li>
+        <li><a href="#team">Chairs</a></li>
+        <li><a href="#gallery">Work</a></li>
         <li><a href="#visit">Visit</a></li>
       </ul>
     </nav>
@@ -88,12 +87,11 @@
 
   <div class="mobile-menu" id="mobile-menu" hidden>
     <ul>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Our work</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#about">Story</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#shop">The Shop</a></li>
+      <li><a href="#ritual">The Ritual</a></li>
+      <li><a href="#services">The Menu</a></li>
+      <li><a href="#team">The Chairs</a></li>
+      <li><a href="#gallery">The Work</a></li>
       <li><a href="#visit">Visit</a></li>
     </ul>
     <a class="btn btn-primary btn-block" href="#booking">Book your chair</a>
@@ -102,22 +100,14 @@
 
 <main id="main">
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero-grid">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Barber-led salon · Heywood</p>
-        <h1 id="hero-title">Look sharp, feel <em class="accent">right at home<svg class="accent-underline" viewBox="0 0 300 14" preserveAspectRatio="none" fill="none" aria-hidden="true"><path pathLength="1" d="M3 9C70 3 128 4 198 7c48 2 85 1 99-3" stroke-linecap="round" stroke-width="3" /></svg></em>.</h1>
-        <p class="hero-sub">Blackthorn &amp; Co. is Heywood's home for precise cuts, expert beard work and proper hot-towel shaves. Everyone's welcome, so sit back; we've got you.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#booking">Book your chair</a>
-          <a class="btn btn-ghost" href="#services">See services</a>
-        </div>
-        <a class="hero-offer" href="#booking"><span class="hero-offer-tag">10% off</span> your first visit when you book online</a>
-        <p class="hero-phone">Prefer to call? <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a></p>
-      </div>
+  <!-- ===================== COVER (hero) ===================== -->
+  <section class="hero chapter" id="cover" aria-labelledby="hero-title">
+    <div class="wrap hero-cover">
+      <p class="hero-dateline"><span>Est. 2012</span><span class="dot">·</span><span>Market Street</span><span class="dot">·</span><span>Heywood</span></p>
 
-      <div class="hero-media reveal">
+      <h1 id="hero-title" class="hero-masthead reveal">Look sharp,<br />feel <em>right at home</em>.</h1>
+
+      <figure class="hero-plate reveal-right">
         <div class="hero-arch">
           <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1100&h=1300&fit=crop&q=80"
                alt="Interior of Blackthorn &amp; Co. barbershop with vintage leather chairs and exposed brick" width="1100" height="1300" fetchpriority="high" />
@@ -126,81 +116,291 @@
           <span class="hero-badge-num">4.9<span class="hero-badge-star">★</span></span>
           <span class="hero-badge-label">214 Google reviews</span>
         </div>
+        <figcaption class="hero-plate-cap">The room on Market Street</figcaption>
+      </figure>
+
+      <div class="hero-lede reveal">
+        <p class="hero-sub">Blackthorn &amp; Co. is Heywood's home for precise cuts, expert beard work and proper hot-towel shaves. Everyone's welcome, so sit back; we've got you.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#booking">Book your chair</a>
+          <p class="hero-aside">
+            <a class="hero-offer" href="#booking"><span class="hero-offer-tag">10% off</span> your first visit</a>
+            <span class="hero-aside-sep" aria-hidden="true">or</span>
+            <a class="hero-tel" href="tel:+441706555019">01706&nbsp;555&nbsp;019</a>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== SERVICES (price menu) ===================== -->
-  <section class="services section section-sand" id="services" aria-labelledby="services-title">
+  <!-- ===================== 01 · THE SHOP (about) ===================== -->
+  <section class="chapter shop section" id="shop" aria-labelledby="shop-title">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Price list</p>
-        <h2 id="services-title">The menu.</h2>
-        <p class="section-lead">Every service includes a consultation and a hot towel finish.</p>
+      <header class="folio">
+        <span class="folio-num">01</span>
+        <span class="folio-name">The Shop</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">The Blackthorn Almanac</span>
+      </header>
+
+      <div class="shop-grid">
+        <div class="shop-lead">
+          <p class="chapter-eyebrow reveal">Our story</p>
+          <h2 id="shop-title" class="pullquote reveal">A neighbourhood shop that takes the craft seriously.</h2>
+          <p class="shop-body reveal">We opened on Market Street in 2012 with one idea: proper barbering without the fuss. Barber-led but open to everyone, from a first haircut to a full hot towel shave. Expect an unhurried chair and a finish that still looks good a fortnight on.</p>
+          <ul class="stat-row reveal">
+            <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
+            <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
+            <li><span class="stat-num"><span class="countup" data-to="6">6</span></span><span class="stat-label">Barbers &amp; stylists</span></li>
+          </ul>
+        </div>
+        <figure class="shop-plate reveal-right">
+          <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1100&fit=crop&q=80"
+               alt="A polished tan leather barber chair under warm light at Blackthorn &amp; Co." width="900" height="1100" loading="lazy" />
+          <figcaption>Market Street, since 2012</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 · THE RITUAL (scrollytelling) ===================== -->
+  <section class="chapter ritual section section-sand" id="ritual" aria-labelledby="ritual-title">
+    <div class="wrap">
+      <header class="folio">
+        <span class="folio-num">02</span>
+        <span class="folio-name">The Ritual</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Proof of craft</span>
+      </header>
+
+      <div class="ritual-head">
+        <h2 id="ritual-title" class="ritual-title reveal">The chair, step by step.</h2>
+        <p class="ritual-sub reveal">Every visit follows the same unhurried order. Four steps, no shortcuts.</p>
       </div>
 
-      <div class="menu-grid">
-        <div class="menu-photo reveal-left">
-          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=1100&fit=crop&q=80" alt="A close beard and face groom under warm light at Blackthorn &amp; Co." width="800" height="1100" loading="lazy" />
+      <div class="ritual-scroll">
+        <div class="ritual-media" aria-hidden="true">
+          <div class="ritual-track">
+            <div class="ritual-plate is-active" data-plate="0"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
+            <div class="ritual-plate" data-plate="1"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
+            <div class="ritual-plate" data-plate="2"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
+            <div class="ritual-plate" data-plate="3"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&h=1120&fit=crop&q=80" alt="" width="900" height="1120" loading="lazy" /></div>
+          </div>
+          <p class="ritual-progress"><span class="ritual-cur">01</span><span class="ritual-tot">&thinsp;/&thinsp;04</span></p>
         </div>
-        <div class="menu-board reveal-right">
+
+        <ol class="ritual-steps">
+          <li class="ritual-step is-active" data-step="0">
+            <span class="ritual-num">01</span>
+            <h3 class="ritual-step-title">Consultation</h3>
+            <p>We start at the mirror, not the clippers. A quick word about what you want, what suits, and how you like to keep it between visits.</p>
+            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=800&h=560&fit=crop&q=80" alt="A tan leather barber chair, ready before a cut" width="800" height="560" loading="lazy" /></figure>
+          </li>
+          <li class="ritual-step" data-step="1">
+            <span class="ritual-num">02</span>
+            <h3 class="ritual-step-title">The cut</h3>
+            <p>Scissor over comb, clipper work, a fade blended by eye. Taken slowly, checked from every angle, and never rushed to free up the chair.</p>
+            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=560&fit=crop&q=80" alt="A barber working a textured crop, mid-cut" width="800" height="560" loading="lazy" /></figure>
+          </li>
+          <li class="ritual-step" data-step="2">
+            <span class="ritual-num">03</span>
+            <h3 class="ritual-step-title">Hot towel</h3>
+            <p>A hot towel to soften and settle, then a close finish around the neck and edges. The bit regulars come back for on its own.</p>
+            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&h=560&fit=crop&q=80" alt="A hot towel laid on before the shave" width="800" height="560" loading="lazy" /></figure>
+          </li>
+          <li class="ritual-step" data-step="3">
+            <span class="ritual-num">04</span>
+            <h3 class="ritual-step-title">The finish</h3>
+            <p>A light product if you want it, a look in the mirror, and out you go. A cut that still sits right a fortnight on, not just on the day.</p>
+            <figure class="ritual-step-fig"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=560&fit=crop&q=80" alt="A clean, finished groom under warm light" width="800" height="560" loading="lazy" /></figure>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 · THE MENU (services) ===================== -->
+  <section class="chapter menu section" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <header class="folio">
+        <span class="folio-num">03</span>
+        <span class="folio-name">The Menu</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Price list</span>
+      </header>
+
+      <div class="menu-head">
+        <h2 id="services-title" class="menu-title reveal">The menu.</h2>
+        <p class="menu-sub reveal">Every service includes a consultation and a hot towel finish. Book a line straight from the list.</p>
+      </div>
+
+      <div class="menu-layout">
+        <div class="menu-board reveal">
           <div class="menu-group">
             <h3 class="menu-cat">Cuts</h3>
             <ul>
-              <li class="menu-row"><span class="menu-name">Signature Cut</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£22</span><span class="menu-dur">45 min</span></li>
-              <li class="menu-row"><span class="menu-name">Skin Fade</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£20</span><span class="menu-dur">30 min</span></li>
-              <li class="menu-row"><span class="menu-name">Kids' Cut <span class="menu-note">under 12</span></span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£12</span><span class="menu-dur">20 min</span></li>
+              <li class="menu-row"><span class="menu-name">Signature Cut</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£22</span><span class="menu-dur">45 min</span><a class="menu-book" href="#booking" data-book-service="Signature Cut · £22 · 45 min" aria-label="Book the Signature Cut">Book</a></li>
+              <li class="menu-row"><span class="menu-name">Skin Fade</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£20</span><span class="menu-dur">30 min</span><a class="menu-book" href="#booking" data-book-service="Skin Fade · £20 · 30 min" aria-label="Book the Skin Fade">Book</a></li>
+              <li class="menu-row"><span class="menu-name">Kids' Cut <span class="menu-note">under 12</span></span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£12</span><span class="menu-dur">20 min</span><a class="menu-book" href="#booking" data-book-service="Kids' Cut · £12 · 20 min" aria-label="Book a Kids' Cut">Book</a></li>
             </ul>
           </div>
           <div class="menu-group">
             <h3 class="menu-cat">Beard &amp; Shave</h3>
             <ul>
-              <li class="menu-row"><span class="menu-name">Beard Trim &amp; Shape</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£14</span><span class="menu-dur">20 min</span></li>
-              <li class="menu-row"><span class="menu-name">Hot Towel Shave</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£25</span><span class="menu-dur">40 min</span></li>
+              <li class="menu-row"><span class="menu-name">Beard Trim &amp; Shape</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£14</span><span class="menu-dur">20 min</span><a class="menu-book" href="#booking" data-book-service="Beard Trim &amp; Shape · £14 · 20 min" aria-label="Book a Beard Trim and Shape">Book</a></li>
+              <li class="menu-row"><span class="menu-name">Hot Towel Shave</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£25</span><span class="menu-dur">40 min</span><a class="menu-book" href="#booking" data-book-service="Hot Towel Shave · £25 · 40 min" aria-label="Book a Hot Towel Shave">Book</a></li>
             </ul>
           </div>
           <div class="menu-group">
             <h3 class="menu-cat">Styling</h3>
             <ul>
-              <li class="menu-row"><span class="menu-name">Wash, Cut &amp; Blow-Dry</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£24</span><span class="menu-dur">45 min</span></li>
+              <li class="menu-row"><span class="menu-name">Wash, Cut &amp; Blow-Dry</span><span class="menu-lead" aria-hidden="true"></span><span class="menu-price">£24</span><span class="menu-dur">45 min</span><a class="menu-book" href="#booking" data-book-service="Wash, Cut &amp; Blow-Dry · £24 · 45 min" aria-label="Book a Wash, Cut and Blow-Dry">Book</a></li>
             </ul>
           </div>
-          <a class="btn btn-primary menu-cta" href="#booking">Book your chair</a>
         </div>
+        <figure class="menu-plate reveal-right">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=1100&fit=crop&q=80" alt="A close beard and face groom under warm light at Blackthorn &amp; Co." width="800" height="1100" loading="lazy" />
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ===================== OUR WORK ===================== -->
-  <section class="gallery section" id="gallery" aria-labelledby="gallery-title">
+  <!-- ===================== 04 · THE CHAIRS (team) ===================== -->
+  <section class="chapter chairs section section-sand" id="team" aria-labelledby="team-title">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Fresh out of the chair</p>
-        <h2 id="gallery-title">Our work.</h2>
-        <p class="section-lead">A handful of recent chairs. Real cuts on real regulars.</p>
+      <header class="folio">
+        <span class="folio-num">04</span>
+        <span class="folio-name">The Chairs</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Meet the barbers</span>
+      </header>
+
+      <div class="chairs-head">
+        <h2 id="team-title" class="chairs-title reveal">Choose your chair.</h2>
+        <p class="chairs-sub reveal">A small, steady team who've been shaping Heywood's hair for years. Pick a chair, or let us match you.</p>
       </div>
-      <div class="gallery-grid">
-        <figure class="g-item g-tall reveal"><img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=800&h=1000&fit=crop&q=80" alt="A hot towel shave in progress" width="800" height="1000" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=560&fit=crop&q=80" alt="A fresh skin fade blended tight to the skin" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=800&h=560&fit=crop&q=80" alt="A neatly shaped and lined-up beard" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1704072650662-76df3af134a7?w=800&h=560&fit=crop&q=80" alt="A young client with a fresh cut, cape still on" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item reveal"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=560&fit=crop&q=80" alt="A women's cut styled and finished" width="800" height="560" loading="lazy" /></figure>
-        <figure class="g-item g-wide reveal"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1200&h=560&fit=crop&q=80" alt="A crisp textured crop, finished at the back" width="1200" height="560" loading="lazy" /></figure>
-      </div>
-      <div class="section-cta reveal">
-        <a href="#booking">Book your chair<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+
+      <ol class="chairs-list">
+        <li class="chair reveal">
+          <a class="chair-link" href="#booking" data-book-barber="Tony Marsh">
+            <span class="chair-num">01</span>
+            <span class="chair-photo"><img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=600&h=720&fit=crop&q=80" alt="Tony, founder and master barber" width="600" height="720" loading="lazy" /></span>
+            <span class="chair-body">
+              <span class="chair-name">Tony Marsh</span>
+              <span class="chair-role">Founder &amp; master barber</span>
+              <span class="chair-chips"><span class="chip">Classic cuts</span><span class="chip">Hot-towel shaves</span></span>
+            </span>
+            <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+        <li class="chair reveal">
+          <a class="chair-link" href="#booking" data-book-barber="Callum Reid">
+            <span class="chair-num">02</span>
+            <span class="chair-photo"><img src="https://images.unsplash.com/photo-1583864697784-a0efc8379f70?w=600&h=720&fit=crop&q=80" alt="Callum, senior barber" width="600" height="720" loading="lazy" /></span>
+            <span class="chair-body">
+              <span class="chair-name">Callum Reid</span>
+              <span class="chair-role">Senior barber</span>
+              <span class="chair-chips"><span class="chip">Skin fades</span><span class="chip">Beard sculpting</span></span>
+            </span>
+            <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+        <li class="chair reveal">
+          <a class="chair-link" href="#booking" data-book-barber="Marcus Bell">
+            <span class="chair-num">03</span>
+            <span class="chair-photo"><img src="https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=600&h=720&fit=crop&q=80" alt="Marcus, barber" width="600" height="720" loading="lazy" /></span>
+            <span class="chair-body">
+              <span class="chair-name">Marcus Bell</span>
+              <span class="chair-role">Barber</span>
+              <span class="chair-chips"><span class="chip">Textured &amp; Afro hair</span><span class="chip">Kids' cuts</span></span>
+            </span>
+            <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+        <li class="chair reveal">
+          <a class="chair-link" href="#booking" data-book-barber="Priya Kaur">
+            <span class="chair-num">04</span>
+            <span class="chair-photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=720&fit=crop&q=80" alt="Priya, stylist" width="600" height="720" loading="lazy" /></span>
+            <span class="chair-body">
+              <span class="chair-name">Priya Kaur</span>
+              <span class="chair-role">Stylist</span>
+              <span class="chair-chips"><span class="chip">Women's cuts</span><span class="chip">Colour</span><span class="chip">Blow-dries</span></span>
+            </span>
+            <span class="chair-cta">Book this chair <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ===================== REVIEWS ===================== -->
-  <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
+  <!-- ===================== 05 · THE WORK (gallery accordion) ===================== -->
+  <section class="chapter work section" id="gallery" aria-labelledby="gallery-title">
     <div class="wrap">
-      <div class="reviews-head">
-        <div>
-          <p class="eyebrow eyebrow-light">What Heywood says</p>
-          <h2 id="reviews-title">Loved by the locals.</h2>
-        </div>
+      <header class="folio">
+        <span class="folio-num">05</span>
+        <span class="folio-name">The Work</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Fresh out of the chair</span>
+      </header>
+
+      <div class="work-head">
+        <h2 id="gallery-title" class="work-title reveal">Our work.</h2>
+        <p class="work-sub reveal">A handful of recent chairs. Real cuts on real regulars. Hover, tap or tab through to look closer.</p>
+      </div>
+
+      <ul class="accordion reveal" role="list">
+        <li class="acc-panel is-open">
+          <button type="button" class="acc-btn" aria-expanded="true">
+            <img src="https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=900&h=1100&fit=crop&q=80" alt="A hot towel shave in progress" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">01</span> Hot towel shave</span>
+          </button>
+        </li>
+        <li class="acc-panel">
+          <button type="button" class="acc-btn" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=900&h=1100&fit=crop&q=80" alt="A fresh skin fade blended tight to the skin" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">02</span> A tight skin fade</span>
+          </button>
+        </li>
+        <li class="acc-panel">
+          <button type="button" class="acc-btn" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=900&h=1100&fit=crop&q=80" alt="A neatly shaped and lined-up beard" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">03</span> Beard, shaped and lined</span>
+          </button>
+        </li>
+        <li class="acc-panel">
+          <button type="button" class="acc-btn" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1704072650662-76df3af134a7?w=900&h=1100&fit=crop&q=80" alt="A young client with a fresh cut, cape still on" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">04</span> Fresh cut, cape on</span>
+          </button>
+        </li>
+        <li class="acc-panel">
+          <button type="button" class="acc-btn" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&h=1100&fit=crop&q=80" alt="A women's cut styled and finished" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">05</span> Cut, colour, finished</span>
+          </button>
+        </li>
+        <li class="acc-panel">
+          <button type="button" class="acc-btn" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&h=1100&fit=crop&q=80" alt="A crisp textured crop, finished at the back" width="900" height="1100" loading="lazy" />
+            <span class="acc-caption"><span class="acc-idx">06</span> Textured crop, from the back</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 06 · IN THEIR WORDS (reviews) ===================== -->
+  <section class="chapter reviews chapter-dark section" id="reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <header class="folio">
+        <span class="folio-num">06</span>
+        <span class="folio-name">In Their Words</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">What Heywood says</span>
+      </header>
+
+      <div class="reviews-top">
+        <h2 id="reviews-title" class="visually-hidden">In their words</h2>
         <div class="google-summary">
           <span class="g-logo" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="26" height="26"><path fill="#EA4335" d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1a6.2 6.2 0 010-12.4c1.9 0 3.2.8 3.9 1.5l2.7-2.6C17 5 14.8 4 12 4a8 8 0 100 16c4.6 0 7.7-3.2 7.7-7.8 0-.5 0-.9-.1-1.4z"/></svg>
@@ -210,136 +410,92 @@
         </div>
       </div>
 
-      <ul class="review-grid review-grid-2">
-        <li class="review-card reveal">
-          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-          <p>"Sharpest fade in Heywood, no question. Quick, spot on, and a proper laugh in the chair."</p>
-          <p class="reviewer"><strong>Danny K.</strong><span>Google review</span></p>
-        </li>
-        <li class="review-card reveal">
-          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-          <p>"Booked a hot towel shave for my dad's 60th and the whole visit felt like a treat. Callum took his time and talked him through every step, and Dad has not stopped raving about it since. We have both switched over for good."</p>
-          <p class="reviewer"><strong>Sarah H.</strong><span>Local Guide · Google</span></p>
-        </li>
-      </ul>
-      <div class="section-cta reveal">
-        <a href="#booking">Book your chair<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="quote-stage">
+        <blockquote class="quote is-active" data-q="0">
+          <p class="quote-text">Sharpest fade in Heywood, no question. Quick, spot on, and a proper laugh in the chair.</p>
+          <footer class="quote-by"><span class="stars" aria-hidden="true">★★★★★</span><span class="quote-name">Danny K.</span><span class="quote-src">Google review</span></footer>
+        </blockquote>
+        <blockquote class="quote" data-q="1">
+          <p class="quote-text">Booked a hot towel shave for my dad's 60th and the whole visit felt like a treat. Callum took his time and talked him through every step, and Dad has not stopped raving about it since. We have both switched over for good.</p>
+          <footer class="quote-by"><span class="stars" aria-hidden="true">★★★★★</span><span class="quote-name">Sarah H.</span><span class="quote-src">Local Guide · Google</span></footer>
+        </blockquote>
+      </div>
+
+      <div class="quote-controls">
+        <button type="button" class="quote-btn quote-prev" aria-label="Previous review">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <p class="quote-count" aria-live="polite"><span class="quote-cur">1</span> / <span class="quote-total">2</span></p>
+        <button type="button" class="quote-btn quote-next" aria-label="Next review">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- ===================== TEAM ===================== -->
-  <section class="team section" id="team" aria-labelledby="team-title">
+  <!-- ===================== 07 · GOOD TO KNOW (FAQ index) ===================== -->
+  <section class="chapter faq section section-sand" id="faq" aria-labelledby="faq-title">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Meet the barbers</p>
-        <h2 id="team-title">The hands behind the chairs.</h2>
-        <p class="section-lead">A small, steady team who've been shaping Heywood's hair for years. Ask for a favourite, or let us match you.</p>
-      </div>
+      <header class="folio">
+        <span class="folio-num">07</span>
+        <span class="folio-name">Good to Know</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Questions, answered</span>
+      </header>
 
-      <ul class="team-grid">
-        <li class="team-card reveal">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=600&h=720&fit=crop&q=80" alt="Tony, founder and master barber" width="600" height="720" loading="lazy" /></div>
-          <h3>Tony Marsh</h3>
-          <p class="team-role">Founder &amp; master barber</p>
-          <p class="team-spec">Classic cuts · hot-towel shaves</p>
-        </li>
-        <li class="team-card reveal">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1583864697784-a0efc8379f70?w=600&h=720&fit=crop&q=80" alt="Callum, senior barber" width="600" height="720" loading="lazy" /></div>
-          <h3>Callum Reid</h3>
-          <p class="team-role">Senior barber</p>
-          <p class="team-spec">Skin fades · beard sculpting</p>
-        </li>
-        <li class="team-card reveal">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=600&h=720&fit=crop&q=80" alt="Marcus, barber" width="600" height="720" loading="lazy" /></div>
-          <h3>Marcus Bell</h3>
-          <p class="team-role">Barber</p>
-          <p class="team-spec">Textured &amp; Afro hair · kids' cuts</p>
-        </li>
-        <li class="team-card reveal">
-          <div class="team-photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=720&fit=crop&q=80" alt="Priya, stylist" width="600" height="720" loading="lazy" /></div>
-          <h3>Priya Kaur</h3>
-          <p class="team-role">Stylist</p>
-          <p class="team-spec">Women's cuts · colour · blow-dries</p>
-        </li>
-      </ul>
-    </div>
-  </section>
+      <h2 id="faq-title" class="visually-hidden">Good to know</h2>
 
-  <!-- ===================== OUR STORY ===================== -->
-  <section class="about section section-sand" id="about" aria-labelledby="about-title">
-    <div class="wrap about-grid">
-      <div class="about-media reveal-left">
-        <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1050&fit=crop&q=80"
-             alt="A polished tan leather barber chair under warm light at Blackthorn &amp; Co." width="900" height="1050" loading="lazy" />
-      </div>
-      <div class="about-copy reveal-right">
-        <p class="eyebrow">Our story</p>
-        <h2 id="about-title">A neighbourhood shop that takes the craft seriously.</h2>
-        <p>We opened on Market Street in 2012 with one idea: proper barbering without the fuss. Barber-led but open to everyone, from a first haircut to a full hot towel shave. Expect an unhurried chair and a finish that still looks good a fortnight on.</p>
-        <ul class="stat-row">
-          <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
-          <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
-          <li><span class="stat-num"><span class="countup" data-to="6">6</span></span><span class="stat-label">Barbers &amp; stylists</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAQ ===================== -->
-  <section class="faq section" id="faq" aria-labelledby="faq-title">
-    <div class="wrap faq-wrap">
-      <div class="section-head">
-        <p class="eyebrow">Good to know</p>
-        <h2 id="faq-title">Your questions, answered.</h2>
-      </div>
-
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary>Do I need to book, or can I walk in?<span class="faq-caret" aria-hidden="true"></span></summary>
-          <div class="faq-body"><p>Both work. We keep a few chairs for walk-ins each day, though weekends and Thursday and Friday evenings get busy, so booking online guarantees your time and your barber.</p></div>
+      <div class="qa-list">
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">01</span><span class="qa-text">Do I need to book, or can I walk in?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>Both work. We keep a few chairs for walk-ins each day, though weekends and Thursday and Friday evenings get busy, so booking online guarantees your time and your barber.</p></div>
         </details>
-        <details class="faq-item">
-          <summary>Do you cut women's and children's hair?<span class="faq-caret" aria-hidden="true"></span></summary>
-          <div class="faq-body"><p>Absolutely. We're barber-led but everyone's welcome. Priya handles women's cuts, colour and blow-dries, and the whole team is brilliant with little ones.</p></div>
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">02</span><span class="qa-text">Do you cut women's and children's hair?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>Absolutely. We're barber-led but everyone's welcome. Priya handles women's cuts, colour and blow-dries, and the whole team is brilliant with little ones.</p></div>
         </details>
-        <details class="faq-item">
-          <summary>Where can I park?<span class="faq-caret" aria-hidden="true"></span></summary>
-          <div class="faq-body"><p>There's pay-and-display parking on Market Street and the free Sutcliffe Street car park is a two-minute walk. Heywood bus interchange is just around the corner.</p></div>
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">03</span><span class="qa-text">Where can I park?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>There's pay-and-display parking on Market Street and the free Sutcliffe Street car park is a two-minute walk. Heywood bus interchange is just around the corner.</p></div>
         </details>
-        <details class="faq-item">
-          <summary>How should I pay?<span class="faq-caret" aria-hidden="true"></span></summary>
-          <div class="faq-body"><p>Cash, card and contactless all work here, including Apple Pay and Google Pay. Tips are always appreciated but never expected.</p></div>
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">04</span><span class="qa-text">How should I pay?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>Cash, card and contactless all work here, including Apple Pay and Google Pay. Tips are always appreciated but never expected.</p></div>
         </details>
-        <details class="faq-item">
-          <summary>Do you sell gift vouchers?<span class="faq-caret" aria-hidden="true"></span></summary>
-          <div class="faq-body"><p>We do. A hot-towel shave makes a cracking gift, so pop in or mention it when you book and we'll sort a voucher for any service or amount.</p></div>
+        <details class="qa">
+          <summary class="qa-q"><span class="qa-num">05</span><span class="qa-text">Do you sell gift vouchers?</span><span class="qa-caret" aria-hidden="true"></span></summary>
+          <div class="qa-a"><p>We do. A hot-towel shave makes a cracking gift, so pop in or mention it when you book and we'll sort a voucher for any service or amount.</p></div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ===================== BOOKING + CONTACT ===================== -->
-  <section class="booking section section-sand" id="booking" aria-labelledby="booking-title">
-    <div class="wrap booking-grid">
-      <div class="booking-intro reveal-left">
-        <span class="annotate annotate-book" aria-hidden="true">we'll save you a chair
+  <!-- ===================== 08 · BOOK IN (booking) ===================== -->
+  <section class="chapter book section" id="booking" aria-labelledby="booking-title">
+    <div class="wrap book-wrap">
+      <header class="folio">
+        <span class="folio-num">08</span>
+        <span class="folio-name">Book In</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">Grab your chair</span>
+      </header>
+
+      <div class="book-head">
+        <span class="annotate annotate-book" aria-hidden="true"><span class="annotate-text">we'll save you a chair</span>
           <svg width="52" height="38" viewBox="0 0 52 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M50 6C36 12 20 16 4 30"/><path d="M14 30l-10 1 3-10"/></svg>
         </span>
-        <p class="eyebrow">Book in</p>
-        <h2 id="booking-title">Grab your chair at Blackthorn &amp; Co.</h2>
-        <p>Tell us what you're after and when suits, and we'll confirm by text. Prefer to talk? Give the shop a ring and we'll happily help you pick a service or a barber.</p>
-        <ul class="booking-points">
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Confirmation by text, usually within the hour</li>
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Free to change or cancel up to 4 hours before</li>
-          <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Request a specific barber, or let us match you</li>
+        <h2 id="booking-title" class="book-title reveal">Grab your chair at Blackthorn &amp; Co.</h2>
+        <p class="book-intro reveal">Tell us what you're after and when suits, and we'll confirm by text. Prefer to talk? Give the shop a ring on <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a> and we'll help you pick a service or a barber.</p>
+        <ul class="book-points reveal">
+          <li>Confirmation by text, usually within the hour</li>
+          <li>Free to change or cancel up to 4 hours before</li>
+          <li>Request a specific barber, or let us match you</li>
         </ul>
-        <p class="booking-call">Rather call? <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a></p>
       </div>
 
       <!-- Swap this whole form block for a Cal.com embed when ready:
            <div id="cal-embed"></div> + the Cal.com script. Field names below map to a booking payload. -->
-      <form class="booking-form reveal-right" id="booking-form" novalidate>
+      <form class="book-form reveal" id="booking-form" novalidate>
         <div class="field">
           <label for="bf-name">Your name</label>
           <input id="bf-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Alex Byrne" />
@@ -397,50 +553,66 @@
     </div>
   </section>
 
-  <!-- ===================== VISIT: HOURS + MAP ===================== -->
-  <section class="visit section" id="visit" aria-labelledby="visit-title">
-    <div class="wrap visit-grid">
-      <div class="visit-info reveal">
-        <p class="eyebrow">Find us</p>
-        <h2 id="visit-title">Right in the heart of Heywood.</h2>
-        <address class="visit-address">
-          <strong>Blackthorn &amp; Co.</strong><br />
-          14 Market Street<br />
-          Heywood, Greater Manchester<br />
-          OL10 1LP
-        </address>
-        <p class="visit-contact">
-          <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a><br />
-          <a href="mailto:hello@blackthornandco.co.uk">hello@blackthornandco.co.uk</a>
-        </p>
+  <!-- ===================== COLOPHON (visit) ===================== -->
+  <section class="chapter colophon section section-sand" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <header class="folio">
+        <span class="folio-num folio-mark" aria-hidden="true">✦</span>
+        <span class="folio-name">Colophon</span>
+        <span class="folio-rule" aria-hidden="true"></span>
+        <span class="folio-meta">The last page</span>
+      </header>
 
-        <table class="hours">
-          <caption class="visually-hidden">Opening hours</caption>
-          <tbody>
-            <tr><th scope="row">Monday</th><td class="closed">Closed</td></tr>
-            <tr><th scope="row">Tuesday</th><td>9:00 – 18:00</td></tr>
-            <tr><th scope="row">Wednesday</th><td>9:00 – 18:00</td></tr>
-            <tr><th scope="row">Thursday</th><td>9:00 – 20:00</td></tr>
-            <tr><th scope="row">Friday</th><td>9:00 – 20:00</td></tr>
-            <tr><th scope="row">Saturday</th><td>8:00 – 17:00</td></tr>
-            <tr><th scope="row">Sunday</th><td class="closed">Closed</td></tr>
-          </tbody>
-        </table>
+      <div class="colophon-masthead">
+        <h2 id="visit-title" class="colophon-title reveal">Blackthorn &amp; Co.</h2>
+        <p class="colophon-sub reveal">Barber-led salon · Heywood · Greater Manchester · OL10</p>
       </div>
 
-      <div class="visit-map reveal">
-        <div class="map-frame">
-          <div class="map-fallback" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <span class="map-fallback-name">Blackthorn &amp; Co.</span>
-            <span class="map-fallback-addr">Market Street, Heywood&nbsp;· OL10</span>
+      <div class="colophon-grid">
+        <div class="colophon-text reveal">
+          <div class="colophon-block">
+            <h3 class="smallcaps">Find us</h3>
+            <address class="visit-address">
+              14 Market Street<br />
+              Heywood, Greater Manchester<br />
+              OL10 1LP
+            </address>
+            <p class="visit-contact">
+              <a href="tel:+441706555019">01706&nbsp;555&nbsp;019</a><br />
+              <a href="mailto:hello@blackthornandco.co.uk">hello@blackthornandco.co.uk</a>
+            </p>
           </div>
-          <iframe
-            title="Map of Heywood town centre near Market Street, OL10"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2330%2C53.5845%2C-2.2060%2C53.5965&layer=mapnik&marker=53.5905%2C-2.2195"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="colophon-block">
+            <h3 class="smallcaps">Hours</h3>
+            <table class="hours">
+              <caption class="visually-hidden">Opening hours</caption>
+              <tbody>
+                <tr><th scope="row">Monday</th><td class="closed">Closed</td></tr>
+                <tr><th scope="row">Tuesday</th><td>9:00 – 18:00</td></tr>
+                <tr><th scope="row">Wednesday</th><td>9:00 – 18:00</td></tr>
+                <tr><th scope="row">Thursday</th><td>9:00 – 20:00</td></tr>
+                <tr><th scope="row">Friday</th><td>9:00 – 20:00</td></tr>
+                <tr><th scope="row">Saturday</th><td>8:00 – 17:00</td></tr>
+                <tr><th scope="row">Sunday</th><td class="closed">Closed</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <p class="map-note">Map shows Heywood town centre. Look for us on Market Street, a moment from the bus interchange. <a href="https://www.google.com/maps/search/?api=1&query=Market%20Street%2C%20Heywood%20OL10" target="_blank" rel="noopener">Get directions&nbsp;↗</a></p>
+
+        <figure class="colophon-map reveal-right">
+          <div class="map-frame">
+            <div class="map-fallback" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span class="map-fallback-name">Blackthorn &amp; Co.</span>
+              <span class="map-fallback-addr">Market Street, Heywood&nbsp;· OL10</span>
+            </div>
+            <iframe
+              title="Map of Heywood town centre near Market Street, OL10"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2330%2C53.5845%2C-2.2060%2C53.5965&layer=mapnik&marker=53.5905%2C-2.2195"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <figcaption class="map-note">Map shows Heywood town centre. Look for us on Market Street, a moment from the bus interchange. <a href="https://www.google.com/maps/search/?api=1&query=Market%20Street%2C%20Heywood%20OL10" target="_blank" rel="noopener">Get directions&nbsp;↗</a></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -459,9 +631,10 @@
     <nav class="footer-nav" aria-label="Footer">
       <h3>Explore</h3>
       <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#gallery">Our work</a></li>
+        <li><a href="#shop">The Shop</a></li>
+        <li><a href="#services">The Menu</a></li>
+        <li><a href="#team">The Chairs</a></li>
+        <li><a href="#gallery">The Work</a></li>
         <li><a href="#booking">Book now</a></li>
       </ul>
     </nav>
@@ -493,6 +666,6 @@
   <a class="ab-seg ab-book" href="#booking">Book a chair</a>
 </div>
 
-<script src="script.js?v=16" defer></script>
+<script src="script.js?v=17" defer></script>
 </body>
 </html>
