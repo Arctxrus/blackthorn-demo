@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,400&family=Hanken+Grotesk:wght@400;500;700&family=Caveat:wght@500&display=swap" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241E18'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23C79A6A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
-<link rel="stylesheet" href="styles.css?v=4" />
+<link rel="stylesheet" href="styles.css?v=5" />
 
 <!-- Local business structured data -->
 <script type="application/ld+json">
@@ -57,6 +57,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ===================== HEADER ===================== -->
+<div id="scroll-sentinel" aria-hidden="true"></div>
 <header class="site-header" id="top">
   <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Blackthorn and Co. home">
@@ -136,19 +137,19 @@
   <!-- ===================== ABOUT ===================== -->
   <section class="about section" id="about" aria-labelledby="about-title">
     <div class="wrap about-grid">
-      <div class="about-media reveal">
+      <div class="about-media reveal-left">
         <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=900&h=1050&fit=crop&q=80"
              alt="A polished tan leather barber chair under warm light at Blackthorn &amp; Co." width="900" height="1050" loading="lazy" />
       </div>
-      <div class="about-copy reveal">
+      <div class="about-copy reveal-right">
         <p class="eyebrow">Our story</p>
         <h2 id="about-title">A neighbourhood shop that takes the craft seriously.</h2>
         <p>We opened on Market Street in 2012 with a simple idea: proper barbering shouldn't feel stiff. Come in for a skin fade or a full hot-towel shave and you'll get the same thing every time — an unhurried chair, a barber who listens, and a finish that still looks good a fortnight later.</p>
         <p>Barber-led, but everyone's welcome. Men, women and little ones all sit in our chairs, and we're proud to be a small part of the town's week.</p>
         <ul class="stat-row">
-          <li><span class="stat-num">2012</span><span class="stat-label">Established</span></li>
-          <li><span class="stat-num">4.9<span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
-          <li><span class="stat-num">6</span><span class="stat-label">Barbers &amp; stylists</span></li>
+          <li><span class="stat-num"><span class="countup" data-to="2012">2012</span></span><span class="stat-label">Established</span></li>
+          <li><span class="stat-num"><span class="countup" data-to="4.9" data-decimals="1">4.9</span><span class="stat-star">★</span></span><span class="stat-label">Google rating</span></li>
+          <li><span class="stat-num"><span class="countup" data-to="6">6</span></span><span class="stat-label">Barbers &amp; stylists</span></li>
         </ul>
       </div>
     </div>
@@ -345,7 +346,7 @@
   <!-- ===================== BOOKING + CONTACT ===================== -->
   <section class="booking section" id="booking" aria-labelledby="booking-title">
     <div class="wrap booking-grid">
-      <div class="booking-intro reveal">
+      <div class="booking-intro reveal-left">
         <span class="annotate annotate-book" aria-hidden="true">we'll save you a chair
           <svg width="52" height="38" viewBox="0 0 52 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M50 6C36 12 20 16 4 30"/><path d="M14 30l-10 1 3-10"/></svg>
         </span>
@@ -362,7 +363,7 @@
 
       <!-- Swap this whole form block for a Cal.com embed when ready:
            <div id="cal-embed"></div> + the Cal.com script. Field names below map to a booking payload. -->
-      <form class="booking-form reveal" id="booking-form" novalidate>
+      <form class="booking-form reveal-right" id="booking-form" novalidate>
         <div class="field">
           <label for="bf-name">Your name</label>
           <input id="bf-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Alex Byrne" />
@@ -513,6 +514,6 @@
   <a class="btn btn-primary" href="#booking">Book a chair</a>
 </div>
 
-<script src="script.js?v=4" defer></script>
+<script src="script.js?v=5" defer></script>
 </body>
 </html>

@@ -38,9 +38,20 @@
     });
   });
 
-  /* ---- Scroll reveal (respects reduced-motion) + 60ms services stagger ---- */
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+  /* ---- Sticky header gains elevation once scrolled past the top ---- */
+  var header = document.querySelector(".site-header");
+  var sentinel = document.getElementById("scroll-sentinel");
+  if (header && sentinel && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      header.classList.toggle("scrolled", !entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(sentinel);
+  }
+
+  /* ---- Scroll reveal (respects reduced-motion) + 60ms card stagger ---- */
+  var STAGGER = ".service-card, .team-card, .review-card, .g-item";
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal, .reveal-left, .reveal-right"));
   if (reduce || !("IntersectionObserver" in window)) {
     reveals.forEach(function (el) { el.classList.add("is-in"); });
   } else {
@@ -48,8 +59,8 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var el = entry.target;
-        // Stagger service cards by DOM order; clear the delay after so hover stays snappy
-        if (el.classList.contains("service-card") && el.parentElement) {
+        // Stagger grid cards by DOM order; clear the delay after so hover stays snappy
+        if (el.parentElement && el.matches(STAGGER)) {
           var idx = Array.prototype.indexOf.call(el.parentElement.children, el);
           el.style.transitionDelay = (idx * 60) + "ms";
           el.addEventListener("transitionend", function handler() {
@@ -64,7 +75,7 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---- Count-up on the reviews rating + count when they enter the viewport ---- */
+  /* ---- Count-up: reviews rating/count and About stats, each when its group enters ---- */
   var counters = Array.prototype.slice.call(document.querySelectorAll(".countup"));
   if (counters.length) {
     var setFinal = function (el) {
@@ -75,7 +86,9 @@
     if (reduce || !("IntersectionObserver" in window) || !window.requestAnimationFrame) {
       counters.forEach(setFinal); // skip straight to final state
     } else {
+      // Reserve width for the final value so digits never shift neighbours, then zero out
       counters.forEach(function (el) {
+        el.style.minWidth = el.textContent.trim().length + "ch";
         var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
         el.textContent = dec ? (0).toFixed(dec) : "0";
       });
@@ -90,15 +103,21 @@
           if (p < 1) requestAnimationFrame(frame); else setFinal(el);
         })(start);
       };
-      var target = document.querySelector(".google-summary") || document.getElementById("reviews") || counters[0];
-      var cio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          counters.forEach(runCount);
-          cio.disconnect();
-        });
-      }, { threshold: 0.4 });
-      cio.observe(target);
+      var watch = function (group) {
+        var items = Array.prototype.slice.call(group.querySelectorAll(".countup"));
+        if (!items.length) return;
+        var o = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            items.forEach(runCount);
+            o.disconnect();
+          });
+        }, { threshold: 0.4 });
+        o.observe(group);
+      };
+      var groups = Array.prototype.slice.call(document.querySelectorAll(".google-summary, .stat-row"));
+      if (groups.length) { groups.forEach(watch); }
+      else { watch(counters[0].parentElement || document.body); }
     }
   }
 

@@ -96,7 +96,10 @@ ul{margin:0;padding:0;list-style:none}
   cursor:pointer;text-decoration:none;white-space:nowrap;
   transition:background .18s var(--ease-out), transform .18s var(--ease-out), box-shadow .18s var(--ease-out);
 }
-.btn-primary:hover{background:var(--caramel-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-primary:hover{background:var(--caramel-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+/* Nav links: underline draws in from the left */
+.primary-nav a::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--caramel);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+.primary-nav a:hover::after,.primary-nav a:focus-visible::after{transform:scaleX(1)}
 .btn-ghost{--btn-bg:transparent;--btn-fg:var(--ink);border-color:var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:var(--cream)}
 .btn-ghost-dark{--btn-bg:transparent;--btn-fg:var(--cream);border-color:rgba(250,246,239,.5)}
@@ -115,6 +118,10 @@ ul{margin:0;padding:0;list-style:none}
   backdrop-filter:saturate(1.1) blur(10px);
   border-bottom:1px solid var(--border);
 }
+/* Elevation once scrolled past the top (opacity-only, no layout shift) */
+.site-header::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:0 8px 26px -16px rgba(38,32,26,.55);opacity:0;transition:opacity .28s var(--ease-out)}
+.site-header.scrolled::after{opacity:1}
+#scroll-sentinel{position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none}
 .header-inner{display:flex;align-items:center;gap:.6rem;min-height:var(--header-h)}
 .brand{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink);font-weight:700}
 .brand-mark{
@@ -220,8 +227,11 @@ ul{margin:0;padding:0;list-style:none}
 .service-icon{
   display:inline-grid;place-items:center;width:52px;height:52px;margin-bottom:1rem;
   border-radius:14px;background:color-mix(in srgb,var(--tan) 22%, var(--cream));color:var(--caramel);
+  transition:transform .25s var(--ease-out), background-color .25s var(--ease-out);
 }
-.service-icon svg{width:26px;height:26px}
+.service-icon svg{width:26px;height:26px;transition:transform .3s var(--ease-out)}
+.service-card:hover .service-icon{transform:translateY(-2px);background:color-mix(in srgb,var(--tan) 36%, var(--cream))}
+.service-card:hover .service-icon svg{transform:rotate(-6deg) scale(1.08)}
 .service-card h3{font-size:1.32rem;margin-bottom:.4rem}
 .service-card p{color:var(--muted-text);font-size:.98rem;margin-bottom:1.2rem}
 .service-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
@@ -373,8 +383,11 @@ ul{margin:0;padding:0;list-style:none}
 .site-footer .brand-mark{background:rgba(250,246,239,.1)}
 .footer-brand p{color:rgba(250,246,239,.75);margin-top:.9rem;max-width:24rem}
 .site-footer h3{font-family:var(--font-body);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tan);margin:0 0 .9rem}
-.footer-nav a,.footer-visit a{color:rgba(250,246,239,.82);text-decoration:none}
-.footer-nav a:hover,.footer-visit a:hover{color:var(--cream);text-decoration:underline}
+.footer-nav a,.footer-visit a{position:relative;color:rgba(250,246,239,.82);text-decoration:none}
+.footer-nav a:hover,.footer-visit a:hover{color:var(--cream)}
+.footer-visit a:hover{text-decoration:underline}
+.footer-nav a::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+.footer-nav a:hover::after,.footer-nav a:focus-visible::after{transform:scaleX(1)}
 .footer-nav li{margin-bottom:.55rem}
 .footer-visit address{font-style:normal;color:rgba(250,246,239,.82);line-height:1.7;margin-bottom:1rem}
 .socials{display:flex;gap:.6rem}
@@ -399,6 +412,13 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
 /* ---------- Reveal animation ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
 .reveal.is-in{opacity:1;transform:none}
+/* Directional reveals for the split sections; vertical fallback on mobile (stacked) */
+.reveal-left,.reveal-right{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
+.reveal-left.is-in,.reveal-right.is-in{opacity:1;transform:none}
+@media (min-width:768px){
+  .reveal-left{transform:translateX(-28px)}
+  .reveal-right{transform:translateX(28px)}
+}
 
 /* ---------- Signature animations ---------- */
 /* Hero accent: SVG underline draws on once, after load */
@@ -409,6 +429,7 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
 /* Count-up: tabular figures + reserved width so digits never shift neighbours */
 .countup{font-variant-numeric:tabular-nums}
 .g-count .countup{display:inline-block;min-width:3ch;text-align:right}
+.stat-num .countup{display:inline-block;text-align:right}
 
 /* =========================================================
    Breakpoints
@@ -427,7 +448,7 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
   :root{--header-h:72px}
   .primary-nav{display:block;margin-inline:auto}
   .primary-nav ul{display:flex;gap:clamp(.5rem,1.35vw,1.35rem)}
-  .primary-nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.94rem;padding:.4rem 0;transition:color .15s;white-space:nowrap}
+  .primary-nav a{position:relative;color:var(--ink);text-decoration:none;font-weight:500;font-size:.94rem;padding:.4rem 0;transition:color .15s;white-space:nowrap}
   .primary-nav a:hover{color:var(--caramel)}
   .nav-book{display:inline-flex}
   .nav-toggle{display:none}
@@ -458,6 +479,6 @@ body{padding-bottom:76px} /* room for the action bar on mobile */
 @media (prefers-reduced-motion:reduce){
   html:focus-within{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;transition-delay:0ms !important;animation-delay:0ms !important}
-  .reveal{opacity:1;transform:none}
+  .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
   .accent-underline path{animation:none !important;stroke-dashoffset:0 !important}
 }
