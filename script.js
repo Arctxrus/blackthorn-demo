@@ -1,4 +1,4 @@
-/* Blackthorn & Co. — progressive enhancement only. Site works without JS. */
+/* Blackthorn & Co. · progressive enhancement only. Site works without JS. */
 (function () {
   "use strict";
 
@@ -87,6 +87,10 @@
       if (sec) { map[id] = a; sections.push(sec); }
     });
     if (!sections.length) return;
+    // order by document position so scroll-spy tracks actual page order (nav order may differ)
+    sections.sort(function (a, b) {
+      return (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
+    });
     var current = null;
 
     function movePill(link, instant) {
@@ -284,15 +288,15 @@
       });
       if (firstInvalid) { firstInvalid.focus(); return; }
 
-      // All valid — demo success (no backend). Replace form with a styled confirmation.
+      // All valid; demo success (no backend). Replace form with a styled confirmation.
       var name = (document.getElementById("bf-name") || {}).value || "";
       var first = name.trim().split(/\s+/)[0].replace(/[<>&]/g, "");
       form.innerHTML =
         '<div class="form-success" role="status" aria-live="polite">' +
           '<span class="success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' +
-          '<h3>Thanks' + (first ? ", " + first : "") + ' — we\'ll text you to confirm.</h3>' +
+          '<h3>Thanks' + (first ? ", " + first : "") + '. We\'ll text you to confirm.</h3>' +
           '<p>We\'ve got your request for a chair at Blackthorn &amp; Co. and will send a confirmation text shortly.</p>' +
-          '<p style="font-size:.82rem">Demo only — no message is actually sent. Ready to connect to Cal.com or your booking system.</p>' +
+          '<p style="font-size:.82rem">Demo only. No message is actually sent, but this is ready to connect to Cal.com or your booking system.</p>' +
         '</div>';
       if (!reduce) form.scrollIntoView({ behavior: "smooth", block: "center" });
     });

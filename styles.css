@@ -1,5 +1,5 @@
 /* =========================================================
-   Blackthorn & Co. — styles.css
+   Blackthorn & Co. · styles.css
    Warm heritage barbershop. Mobile-first. See DESIGN.md.
    ========================================================= */
 
@@ -48,7 +48,7 @@ body{
   font-size:1.0625rem;
   line-height:1.6;
   color:var(--ink);
-  background:#F6EFE2; /* warm base — uniform behind the floating nav pill and the hero */
+  background:#F6EFE2; /* warm base, uniform behind the floating nav pill and the hero */
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
@@ -212,7 +212,7 @@ ul{margin:0;padding:0;list-style:none}
   display:flex;flex-direction:column;line-height:1.05;
 }
 .hero-badge-num{font-family:var(--font-display);font-weight:900;font-size:1.6rem;color:var(--tan)}
-.hero-badge-num span{font-size:1rem}
+.hero-badge-num span{font-size:.72em;margin-left:.08em}
 .hero-badge-label{font-size:.72rem;letter-spacing:.04em;color:rgba(250,246,239,.85)}
 
 /* handwritten annotations (max 2 site-wide) */
@@ -245,6 +245,26 @@ ul{margin:0;padding:0;list-style:none}
 .stat-num{display:block;font-family:var(--font-display);font-weight:900;font-size:1.9rem;color:var(--ink)}
 .stat-star{color:var(--tan);font-size:1.2rem}
 .stat-label{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-text)}
+
+/* ---------- Services price menu ---------- */
+.menu-grid{display:grid;gap:clamp(1.75rem,5vw,3rem)}
+.menu-photo img{width:100%;height:clamp(240px,62vw,540px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+.menu-board{align-self:center}
+.menu-group{margin-bottom:1.5rem}
+.menu-group:last-of-type{margin-bottom:1.25rem}
+.menu-cat{font-family:var(--font-body);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin:0 0 .5rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+.menu-group ul{display:flex;flex-direction:column}
+.menu-row{display:flex;align-items:baseline;gap:.55rem;padding:.5rem 0}
+.menu-name{font-family:var(--font-display);font-weight:600;font-size:1.14rem;color:var(--ink)}
+.menu-note{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--caramel);background:color-mix(in srgb,var(--tan) 26%,var(--cream));padding:.15rem .4rem;border-radius:6px;vertical-align:middle;margin-left:.3rem}
+.menu-lead{flex:1;border-bottom:1px dotted color-mix(in srgb,var(--muted-text) 60%,transparent);transform:translateY(-.28em)}
+.menu-price{font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.menu-dur{color:var(--muted-text);font-size:.85rem;min-width:3.6em;text-align:right;font-variant-numeric:tabular-nums}
+.menu-cta{margin-top:1.5rem}
+@media (min-width:768px){
+  .menu-grid{grid-template-columns:5fr 7fr;align-items:stretch}
+  .menu-photo img{height:100%}
+}
 
 /* ---------- Services ---------- */
 .service-grid{display:grid;gap:1.1rem}
