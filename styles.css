@@ -289,7 +289,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-book:hover{background:color-mix(in srgb,var(--caramel) 12%,transparent);color:var(--caramel-dark)}
 .menu-book:focus-visible{outline:2px solid var(--caramel);outline-offset:1px}
 .menu-plate{margin:0}
-.menu-plate img{width:100%;height:clamp(260px,50vw,100%);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
+/* Mobile/stacked: definite natural height so the row isn't sized from the
+   image's aspect-ratio while the painted image is shorter (phantom height). */
+.menu-plate img{width:100%;height:clamp(240px,52vw,420px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
 .menu-feature{background:color-mix(in srgb,var(--tan) 12%,transparent);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem .9rem}
 .menu-feature .menu-cat{border-bottom-color:color-mix(in srgb,var(--caramel) 32%,transparent)}
 .menu-feature .menu-row{padding-top:.35rem}
@@ -529,6 +531,8 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 
   .shop-grid{grid-template-columns:7fr 5fr;align-items:center}
   .menu-layout{grid-template-columns:7fr 5fr;align-items:stretch}
+  /* Two-column desktop: row height is definite, so the plate can fill it */
+  .menu-plate,.menu-plate img{height:100%}
   .chair-link{grid-template-columns:auto 60px 1fr auto}
   .chair-photo{width:60px;height:60px}
   .chair-cta{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-body);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--caramel);white-space:nowrap}
