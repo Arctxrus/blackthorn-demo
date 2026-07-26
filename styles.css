@@ -450,12 +450,13 @@ ul,ol{margin:0;padding:0;list-style:none}
 .colophon-block:last-child{margin-bottom:0}
 .visit-address{font-style:normal;color:var(--ink);line-height:1.7;margin-bottom:.75rem}
 .visit-contact{margin:0}
-.hours{width:100%;border-collapse:collapse;background:var(--ivory);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.hours th,.hours td{padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
-.hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
-.hours th{font-weight:500;color:var(--ink)}
+/* Hours: a ruled ledger, not a card. Hairline rules only, no outside frame,
+   matching the almanac's other ruled lists (chairs, FAQ, ritual). */
+.hours{width:100%;border-collapse:collapse;border-top:1px solid var(--rule)}
+.hours th,.hours td{padding:.7rem .1rem;text-align:left;border-bottom:1px solid var(--rule)}
+.hours th{font-family:var(--font-display);font-weight:600;font-size:1.02rem;color:var(--ink)}
 .hours td{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted-text)}
-.hours td.closed{color:var(--caramel);font-weight:700}
+.hours td.closed{color:var(--caramel);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
 .colophon-map{margin:0;display:flex;flex-direction:column}
 .map-frame{position:relative;flex:1;min-height:320px;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);background:var(--sand)}
 .map-fallback{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;text-align:center;padding:1.5rem;color:var(--muted-text);background:radial-gradient(circle at 50% 42%, color-mix(in srgb,var(--tan) 20%, var(--sand)), var(--sand))}
