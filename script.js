@@ -287,6 +287,156 @@
     }
   }
 
+  /* ---- Booking: day chips + grouped time slots (progressive enhancement) ----
+     The native date/time inputs stay in the markup and keep holding the value,
+     so validation and the payload are unchanged and the form still works JS-off.
+     Slots are generated from the shop's real opening hours, so a closed day or
+     a time in the past can never be offered. */
+  (function () {
+    var bform = document.querySelector(".book-form");
+    var dateInput = document.getElementById("bf-date");
+    var timeInput = document.getElementById("bf-time");
+    var dayWrap = document.getElementById("bf-days");
+    var slotWrap = document.getElementById("bf-slots");
+    if (!bform || !dateInput || !timeInput || !dayWrap || !slotWrap) return;
+
+    // [openHour, closeHour] by JS day index (0 = Sunday); null = closed
+    var HOURS = { 0: null, 1: null, 2: [9, 18], 3: [9, 18], 4: [9, 20], 5: [9, 20], 6: [8, 17] };
+    var DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var STEP = 30;      // minutes between slots
+    var LEAD = 30;      // last slot must start this long before closing
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function iso(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+    function hhmm(m) { return pad(Math.floor(m / 60)) + ":" + pad(m % 60); }
+    function parseIso(s) {
+      var p = String(s).split("-");
+      return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
+    }
+
+    function slotsFor(dow, isToday) {
+      var h = HOURS[dow];
+      if (!h) return [];
+      var now = new Date(), cutoff = isToday ? now.getHours() * 60 + now.getMinutes() : -1;
+      var out = [];
+      for (var m = h[0] * 60; m <= h[1] * 60 - LEAD; m += STEP) {
+        if (m > cutoff) out.push(m);
+      }
+      return out;
+    }
+
+    // Build the next few open days, skipping today once its last slot has gone
+    function upcomingDays(limit) {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var out = [], d = new Date(today), guard = 0;
+      while (out.length < limit && guard < 30) {
+        var dow = d.getDay(), diff = Math.round((d - today) / 86400000);
+        if (HOURS[dow] && (diff > 0 || slotsFor(dow, true).length)) {
+          out.push({
+            iso: iso(d),
+            dow: dow,
+            label: diff === 0 ? "Today" : diff === 1 ? "Tomorrow" : DAY_ABBR[dow] + " " + d.getDate()
+          });
+        }
+        d.setDate(d.getDate() + 1); guard++;
+      }
+      return out;
+    }
+
+    function setTime(v) {
+      timeInput.value = v;
+      timeInput.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    function renderSlots(isoDate) {
+      slotWrap.innerHTML = "";
+      if (!isoDate) {
+        slotWrap.innerHTML = '<p class="slot-empty">Pick a day first and we\'ll show you the times.</p>';
+        return;
+      }
+      var d = parseIso(isoDate);
+      if (!d) return;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var list = slotsFor(d.getDay(), d.getTime() === today.getTime());
+      if (!list.length) {
+        slotWrap.innerHTML = HOURS[d.getDay()]
+          ? '<p class="slot-empty">No times left that day. Try the next one?</p>'
+          : '<p class="slot-empty">We\'re closed that day. Tuesday to Saturday works best.</p>';
+        setTime("");
+        return;
+      }
+      var groups = [
+        { title: "Morning", items: list.filter(function (m) { return m < 12 * 60; }) },
+        { title: "Afternoon", items: list.filter(function (m) { return m >= 12 * 60 && m < 16 * 60; }) },
+        { title: "Evening", items: list.filter(function (m) { return m >= 16 * 60; }) }
+      ];
+      var html = "";
+      groups.forEach(function (g) {
+        if (!g.items.length) return;
+        html += '<div class="slot-group"><p class="slot-title">' + g.title + '</p><div class="slot-grid">';
+        g.items.forEach(function (m) {
+          var v = hhmm(m), id = "slot-" + v.replace(":", "");
+          html += '<input class="choice-input slot-input" type="radio" name="slot" id="' + id + '" value="' + v + '" />' +
+                  '<label class="choice-pill slot-pill" for="' + id + '">' + v + "</label>";
+        });
+        html += "</div></div>";
+      });
+      slotWrap.innerHTML = html;
+      // keep a still-valid time selected across a day change
+      var keep = slotWrap.querySelector('.slot-input[value="' + timeInput.value + '"]');
+      if (keep) keep.checked = true; else setTime("");
+    }
+
+    // Day chips
+    var days = upcomingDays(6);
+    if (!days.length) return; // nothing sensible to offer; leave native inputs alone
+    var dayHtml = "";
+    days.forEach(function (d, i) {
+      dayHtml += '<input class="choice-input day-input" type="radio" name="day" id="day-' + i + '" value="' + d.iso + '" />' +
+                 '<label class="choice-pill day-pill" for="day-' + i + '">' + d.label + "</label>";
+    });
+    dayHtml += '<button type="button" class="choice-pill chip-more" id="bf-other-date">Another date</button>';
+    dayWrap.innerHTML = dayHtml;
+
+    bform.classList.add("is-enhanced");
+    dayWrap.hidden = false;
+    slotWrap.hidden = false;
+    renderSlots(dateInput.value || "");
+
+    dayWrap.addEventListener("change", function (e) {
+      var el = e.target;
+      if (!el.classList || !el.classList.contains("day-input")) return;
+      dateInput.value = el.value;
+      dateInput.dispatchEvent(new Event("change", { bubbles: true }));
+      bform.classList.remove("show-native-date");
+      renderSlots(el.value);
+    });
+
+    slotWrap.addEventListener("change", function (e) {
+      var el = e.target;
+      if (el.classList && el.classList.contains("slot-input")) setTime(el.value);
+    });
+
+    var other = document.getElementById("bf-other-date");
+    if (other) {
+      other.addEventListener("click", function () {
+        bform.classList.add("show-native-date");
+        Array.prototype.forEach.call(dayWrap.querySelectorAll(".day-input"), function (r) { r.checked = false; });
+        dateInput.focus();
+        if (dateInput.showPicker) { try { dateInput.showPicker(); } catch (err) {} }
+      });
+    }
+
+    // A date typed straight into the native input still drives the slot grid
+    dateInput.addEventListener("change", function () {
+      var match = dayWrap.querySelector('.day-input[value="' + dateInput.value + '"]');
+      Array.prototype.forEach.call(dayWrap.querySelectorAll(".day-input"), function (r) {
+        r.checked = (r === match);
+      });
+      renderSlots(dateInput.value);
+    });
+  })();
+
   /* ---- Booking form: custom validation + demo success ---- */
   var form = document.getElementById("booking-form");
   if (form) {
@@ -355,7 +505,17 @@
         if (c.ok(el.value)) { clearError(el); }
         else { showError(el, c.msg); if (!firstInvalid) firstInvalid = el; }
       });
-      if (firstInvalid) { firstInvalid.focus(); return; }
+      if (firstInvalid) {
+        // A native date/time input is hidden once the chip UI is active, so send
+        // focus to the first chip in that field instead of nowhere.
+        var target = firstInvalid;
+        if (target.offsetParent === null) {
+          var wrap = target.closest(".field");
+          target = (wrap && wrap.querySelector(".choice-input, .chip-more")) || target;
+        }
+        target.focus();
+        return;
+      }
 
       var name = (document.getElementById("bf-name") || {}).value || "";
       var first = name.trim().split(/\s+/)[0].replace(/[<>&]/g, "");
