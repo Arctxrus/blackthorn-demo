@@ -283,11 +283,30 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-lead{flex:1;min-width:1.25rem;border-bottom:1px dotted color-mix(in srgb,var(--muted-text) 55%,transparent);transform:translateY(-.28em)}
 .menu-price{font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--ink)}
 .menu-dur{color:var(--muted-text);font-size:.85rem;min-width:3.6em;text-align:right;font-variant-numeric:tabular-nums}
-.menu-book{align-self:center;flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:.5rem .55rem;margin:-.35rem -.4rem -.35rem .15rem;
-  font-family:var(--font-body);font-weight:700;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel);text-decoration:none;border-radius:8px;
-  transition:background-color .18s var(--ease-out),color .18s var(--ease-out)}
-.menu-book:hover{background:color-mix(in srgb,var(--caramel) 12%,transparent);color:var(--caramel-dark)}
-.menu-book:focus-visible{outline:2px solid var(--caramel);outline-offset:1px}
+/* Reads as a control, not a text label: tinted pill with a hairline edge, so
+   it's obviously tappable on touch where there is no hover to reveal it. */
+.menu-book{align-self:center;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:.4rem 1rem;
+  font-family:var(--font-body);font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--caramel-dark);text-decoration:none;
+  background:color-mix(in srgb,var(--caramel) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--caramel) 38%,transparent);border-radius:999px;
+  transition:background-color .18s var(--ease-out),color .18s var(--ease-out),border-color .18s var(--ease-out)}
+.menu-book:hover{background:var(--caramel);border-color:var(--caramel);color:var(--ivory)}
+.menu-book:focus-visible{outline:2px solid var(--caramel);outline-offset:2px}
+/* The bundle line is the one we push, so its button is solid */
+.menu-feature .menu-book{background:var(--caramel);border-color:var(--caramel);color:var(--ivory)}
+.menu-feature .menu-book:hover{background:var(--caramel-dark);border-color:var(--caramel-dark)}
+/* Mobile: names already wrap and the leader collapses, so give the row two
+   lines - name above, then price, duration and the button with room to breathe. */
+@media (max-width:767px){
+  .menu-row{flex-wrap:wrap;align-items:center;gap:.35rem .65rem;padding:.65rem 0}
+  .menu-name{flex:1 1 100%}
+  .menu-lead{display:none}
+  .menu-price{order:1}
+  .menu-dur{order:2;margin-right:auto;min-width:0;text-align:left}
+  .menu-book{order:3}
+}
 .menu-plate{margin:0}
 /* Mobile/stacked: definite natural height so the row isn't sized from the
    image's aspect-ratio while the painted image is shorter (phantom height). */
