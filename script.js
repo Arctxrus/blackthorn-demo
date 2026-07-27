@@ -94,9 +94,9 @@
       if (!link || pnav.offsetParent === null) return;
       var nr = pnav.getBoundingClientRect(), lr = link.getBoundingClientRect();
       if (instant) pill.style.transition = "none";
-      pill.style.width = (lr.width + 16) + "px";
-      pill.style.height = (lr.height + 6) + "px";
-      pill.style.transform = "translate(" + (lr.left - nr.left - 8) + "px, -50%)";
+      pill.style.width = (lr.width + 14) + "px";
+      pill.style.height = (lr.height + 12) + "px";
+      pill.style.transform = "translate(" + (lr.left - nr.left - 7) + "px, -50%)";
       pill.style.opacity = "1";
       if (instant) { void pill.offsetWidth; pill.style.transition = ""; }
     }
