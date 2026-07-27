@@ -287,6 +287,56 @@
     }
   }
 
+  /* ---- Opening hours: read once from the visible table, so the page has one
+     source of truth. Change the table and the slot picker and the open/closed
+     badge both follow. Falls back to the published hours if the table moves. */
+  var DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var HOURS = (function () {
+    var fallback = { 0: null, 1: null, 2: [9, 18], 3: [9, 18], 4: [9, 20], 5: [9, 20], 6: [8, 17] };
+    var index = { Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6 };
+    var rows = document.querySelectorAll(".hours tbody tr");
+    if (!rows.length) return fallback;
+    var map = { 0: null, 1: null, 2: null, 3: null, 4: null, 5: null, 6: null }, found = 0;
+    Array.prototype.forEach.call(rows, function (tr) {
+      var th = tr.querySelector("th"), td = tr.querySelector("td");
+      if (!th || !td) return;
+      var i = index[th.textContent.trim()];
+      if (i === undefined) return;
+      found++;
+      var m = td.textContent.match(/(\d{1,2}):(\d{2})\s*[–—-]\s*(\d{1,2}):(\d{2})/);
+      map[i] = m ? [+m[1] + (+m[2]) / 60, +m[3] + (+m[4]) / 60] : null;
+    });
+    return found ? map : fallback;
+  })();
+
+  /* ---- "Open now" / "Closed" badge, so the answer isn't buried at the bottom ---- */
+  (function () {
+    var slots = document.querySelectorAll("[data-open-status]");
+    if (!slots.length) return;
+    function fmt(h) {
+      var hr = Math.floor(h), mn = Math.round((h - hr) * 60);
+      return (hr % 12 || 12) + (mn ? ":" + String(mn).padStart(2, "0") : "") + (hr >= 12 ? "pm" : "am");
+    }
+    var now = new Date(), dow = now.getDay(), cur = now.getHours() + now.getMinutes() / 60;
+    var today = HOURS[dow], isOpen = !!(today && cur >= today[0] && cur < today[1]), label;
+    if (isOpen) {
+      label = "Open now, until " + fmt(today[1]);
+    } else {
+      label = "Closed";
+      for (var i = 0; i < 8; i++) {
+        var d = (dow + i) % 7, h = HOURS[d];
+        if (!h) continue;
+        if (i === 0 && cur < h[0]) { label = "Closed, opens " + fmt(h[0]); break; }
+        if (i > 0) { label = "Closed, opens " + (i === 1 ? "tomorrow" : DAY_ABBR[d]) + " " + fmt(h[0]); break; }
+      }
+    }
+    Array.prototype.forEach.call(slots, function (el) {
+      el.textContent = label;
+      el.classList.toggle("is-open", isOpen);
+      el.hidden = false;
+    });
+  })();
+
   /* ---- Booking: day chips + grouped time slots (progressive enhancement) ----
      The native date/time inputs stay in the markup and keep holding the value,
      so validation and the payload are unchanged and the form still works JS-off.
@@ -300,9 +350,6 @@
     var slotWrap = document.getElementById("bf-slots");
     if (!bform || !dateInput || !timeInput || !dayWrap || !slotWrap) return;
 
-    // [openHour, closeHour] by JS day index (0 = Sunday); null = closed
-    var HOURS = { 0: null, 1: null, 2: [9, 18], 3: [9, 18], 4: [9, 20], 5: [9, 20], 6: [8, 17] };
-    var DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var STEP = 30;      // minutes between slots
     var LEAD = 30;      // last slot must start this long before closing
 

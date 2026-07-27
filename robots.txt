@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arctxrus.github.io/blackthorn-demo/sitemap.xml

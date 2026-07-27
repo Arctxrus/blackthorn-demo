@@ -145,7 +145,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .header-inner,.site-header.scrolled .header-inner{background:var(--cream)}
 }
-.brand{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink);font-weight:700}
+.brand{display:inline-flex;align-items:center;min-height:44px;gap:.55rem;text-decoration:none;color:var(--ink);font-weight:700}
 .brand-mark{
   display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
   background:var(--espresso);color:var(--tan);font-family:var(--font-display);font-weight:900;font-size:1.15rem;
@@ -224,15 +224,24 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;margin-top:1.5rem}
 .hero-cta .btn{min-width:12rem}
 .hero-actions-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.4rem}
-.hero-see{display:inline-block;padding:.45rem 0;font-family:var(--font-body);font-weight:700;color:var(--caramel);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,var(--caramel) 40%,transparent);transition:text-decoration-color .18s var(--ease-out)}
+.hero-see{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-body);font-weight:700;color:var(--caramel);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,var(--caramel) 40%,transparent);transition:text-decoration-color .18s var(--ease-out)}
 .hero-see:hover{text-decoration-color:var(--caramel)}
 .hero-aside{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0;color:var(--muted-text);font-size:.95rem}
 .hero-aside-sep{color:var(--rule)}
-.hero-offer{display:inline-flex;align-items:center;gap:.45rem;padding:.28rem .7rem .28rem .35rem;border-radius:999px;background:color-mix(in srgb, var(--caramel) 9%, transparent);border:1px solid color-mix(in srgb, var(--caramel) 26%, transparent);color:var(--muted-text);font-size:.86rem;font-weight:500;text-decoration:none;transition:background .18s var(--ease-out),border-color .18s var(--ease-out),transform .18s var(--ease-out)}
+.hero-offer{display:inline-flex;align-items:center;min-height:44px;gap:.45rem;padding:.28rem .8rem .28rem .4rem;border-radius:999px;background:color-mix(in srgb, var(--caramel) 9%, transparent);border:1px solid color-mix(in srgb, var(--caramel) 26%, transparent);color:var(--muted-text);font-size:.86rem;font-weight:500;text-decoration:none;transition:background .18s var(--ease-out),border-color .18s var(--ease-out),transform .18s var(--ease-out)}
 .hero-offer:hover{background:color-mix(in srgb, var(--caramel) 16%, transparent);border-color:color-mix(in srgb, var(--caramel) 42%, transparent);transform:translateY(-1px)}
 .hero-offer-tag{display:inline-block;padding:.2rem .5rem;border-radius:999px;background:var(--caramel);color:var(--ivory);font-weight:700;font-size:.76rem;white-space:nowrap}
-.hero-tel{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--caramel) 55%,transparent);transition:border-color .18s var(--ease-out)}
+.hero-tel{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--caramel) 55%,transparent);transition:border-color .18s var(--ease-out)}
 .hero-tel:hover{border-bottom-color:var(--caramel)}
+
+/* Open now / closed badge: answers "are they open?" without scrolling */
+.open-status{display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .6rem;border-radius:999px;
+  border:1px solid var(--rule);color:var(--muted-text);font-weight:700;white-space:nowrap}
+.open-status::before{content:"";flex:0 0 auto;width:7px;height:7px;border-radius:50%;
+  border:1.5px solid currentColor;background:transparent}
+.open-status.is-open{color:var(--caramel-dark);border-color:color-mix(in srgb,var(--caramel) 40%,transparent);
+  background:color-mix(in srgb,var(--caramel) 12%,transparent)}
+.open-status.is-open::before{background:currentColor;border-color:currentColor}
 
 /* handwritten annotation (used once, at booking) */
 .annotate{font-family:var(--font-hand);font-weight:500;color:var(--caramel);font-size:1.5rem;line-height:1;display:inline-flex;align-items:flex-end;gap:.15rem;text-shadow:0 1px 3px rgba(250,246,239,.85)}
@@ -501,6 +510,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .colophon-block:last-child{margin-bottom:0}
 .visit-address{font-style:normal;color:var(--ink);line-height:1.7;margin-bottom:.75rem}
 .visit-contact{margin:0}
+/* Phone and email are the highest-intent taps here, so give them a full target */
+.visit-contact a,.map-note a{display:inline-flex;align-items:center;min-height:44px}
 /* Hours: a ruled ledger, not a card. Hairline rules only, no outside frame,
    matching the almanac's other ruled lists (chairs, FAQ, ritual). */
 .hours{width:100%;border-collapse:collapse;border-top:1px solid var(--rule)}
@@ -529,8 +540,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 .footer-visit a:hover{text-decoration:underline}
 .footer-nav a::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
 .footer-nav a:hover::after,.footer-nav a:focus-visible::after{transform:scaleX(1)}
-.footer-nav li{margin-bottom:.55rem}
+.footer-nav a{display:inline-flex;align-items:center;min-height:44px}
+.footer-nav li{margin-bottom:0}
 .footer-visit address{font-style:normal;color:rgba(250,246,239,.82);line-height:1.7;margin-bottom:1rem}
+.footer-visit address a{display:inline-flex;align-items:center;min-height:44px}
 .socials{display:flex;gap:.6rem}
 .socials a{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:11px;background:rgba(250,246,239,.08);color:var(--cream)}
 .socials a:hover{background:var(--caramel)}
@@ -587,7 +600,7 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   :root{--header-h:72px}
   .primary-nav{position:relative;display:block;margin-inline:auto}
   .primary-nav ul{position:relative;z-index:1;display:flex;gap:clamp(.5rem,1.35vw,1.35rem)}
-  .primary-nav a{position:relative;color:var(--ink);text-decoration:none;font-weight:500;font-size:.94rem;padding:.4rem 0;transition:color .15s;white-space:nowrap}
+  .primary-nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;font-weight:500;font-size:.94rem;transition:color .15s;white-space:nowrap}
   .primary-nav a:hover{color:var(--caramel)}
   .nav-book{display:inline-flex}
   .nav-toggle{display:none}
