@@ -303,7 +303,7 @@
       var i = index[th.textContent.trim()];
       if (i === undefined) return;
       found++;
-      var m = td.textContent.match(/(\d{1,2}):(\d{2})\s*[–—-]\s*(\d{1,2}):(\d{2})/);
+      var m = td.textContent.match(/(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})/);
       map[i] = m ? [+m[1] + (+m[2]) / 60, +m[3] + (+m[4]) / 60] : null;
     });
     return found ? map : fallback;

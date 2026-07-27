@@ -87,14 +87,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .stars{color:var(--star);letter-spacing:.08em;font-size:.95rem}
 
 /* ---------- Folio (chapter header) ---------- */
-.folio{display:flex;align-items:baseline;gap:.9rem;margin-bottom:clamp(1.75rem,4vw,2.75rem)}
-.folio-num{font-family:var(--font-display);font-weight:900;font-size:clamp(1.4rem,3vw,2rem);line-height:1;color:var(--caramel);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.folio-mark{color:var(--tan)}
+.folio{display:flex;align-items:center;gap:.9rem;margin-bottom:clamp(1.75rem,4vw,2.75rem)}
 .folio-name{font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
-.folio-rule{flex:1;height:1px;min-width:1.25rem;background:var(--rule);transform:translateY(-.3em)}
+.folio-rule{flex:1;height:1px;min-width:1.25rem;background:var(--rule)}
 .folio-meta{font-family:var(--font-body);font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-text);white-space:nowrap}
 .chapter-dark .folio-name{color:var(--cream)}
-.chapter-dark .folio-num{color:var(--tan)}
 .chapter-dark .folio-rule{background:rgba(250,246,239,.22)}
 .chapter-dark .folio-meta{color:rgba(250,246,239,.6)}
 @media (max-width:600px){.folio-meta{display:none}}
@@ -375,14 +372,19 @@ ul,ol{margin:0;padding:0;list-style:none}
 .work-head{margin-bottom:clamp(1.5rem,4vw,2rem)}
 .work-title{font-size:clamp(2rem,4.5vw,3rem)}
 .work-sub{color:var(--muted-text);margin:.6rem 0 0;max-width:50ch}
-.accordion{display:flex;flex-direction:column;gap:.85rem}
+/* Mobile: a swipe row rather than six stacked full-width photos, which ran to
+   over two viewports on its own. */
+.accordion{display:flex;gap:.7rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding-block:.3rem;scroll-padding-inline:var(--gutter)}
+.acc-panel{flex:0 0 76%;scroll-snap-align:center}
+.acc-btn{height:100%}
+.acc-btn img{aspect-ratio:3/4}
 .acc-panel{margin:0}
 .acc-btn{display:block;width:100%;padding:0;border:1px solid var(--border);background:none;cursor:pointer;position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
 .acc-btn img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s var(--ease-out)}
 .acc-caption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:.5rem;padding:1.6rem 1rem .85rem;text-align:left;
   font-family:var(--font-body);font-weight:700;font-size:.92rem;color:var(--cream);
   background:linear-gradient(to top,rgba(20,15,10,.78),rgba(20,15,10,.25) 60%,transparent)}
-.acc-idx{font-family:var(--font-display);font-weight:900;color:var(--tan)}
 .acc-btn:focus-visible{outline:2px solid var(--caramel);outline-offset:3px}
 
 /* ---------- 06 · In Their Words (reviews, dark) ---------- */
@@ -422,7 +424,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   font-family:var(--font-display);font-weight:600;font-size:clamp(1.1rem,2.5vw,1.3rem);color:var(--ink)}
 .qa-q::-webkit-details-marker{display:none}
 .qa-q:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:6px}
-.qa-num{font-family:var(--font-body);font-weight:700;font-size:.85rem;letter-spacing:.08em;color:var(--caramel);font-variant-numeric:tabular-nums;flex:0 0 auto;transform:translateY(-.05em)}
 .qa-text{flex:1}
 .qa-caret{position:relative;flex:0 0 16px;width:16px;height:16px;align-self:center}
 .qa-caret::before,.qa-caret::after{content:"";position:absolute;top:7px;left:0;width:16px;height:2px;background:var(--caramel);transition:transform .25s var(--ease-out)}
@@ -525,6 +526,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .colophon-sub{margin:.75rem 0 0;font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--caramel)}
 .colophon-grid{display:grid;gap:clamp(1.75rem,5vw,3rem)}
 .colophon-block{margin-bottom:1.75rem}
+/* The status badge cannot wrap internally, so let it drop to its own line
+   rather than forcing the whole column wider than the viewport. */
+.colophon-block .smallcaps{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
 .colophon-block:last-child{margin-bottom:0}
 .visit-address{font-style:normal;color:var(--ink);line-height:1.7;margin-bottom:.75rem}
 .visit-contact{margin:0}
@@ -538,12 +542,26 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hours td{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted-text)}
 .hours td.closed{color:var(--caramel);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
 .colophon-map{margin:0;display:flex;flex-direction:column}
-.map-frame{position:relative;flex:1;min-height:320px;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);background:var(--sand)}
+/* aspect-ratio alone: adding a min-height made the box demand 450px of width
+   (ratio x min-height), which widened the whole colophon grid column. */
+.map-frame{position:relative;display:block;width:100%;aspect-ratio:3/2;overflow:hidden;text-decoration:none;
+  border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);background:var(--sand)}
+.map-frame:focus-visible{outline:2px solid var(--caramel);outline-offset:3px}
+/* Static tiles, warmed slightly so the map sits in the palette */
+.map-tiles{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);
+  filter:sepia(.28) saturate(.85) contrast(1.02)}
+.map-tiles img{width:100%;height:100%;object-fit:cover}
+.map-pin{position:absolute;z-index:2;left:65.87%;top:40.04%;transform:translate(-50%,-100%);color:var(--caramel);
+  filter:drop-shadow(0 2px 4px rgba(38,32,26,.45))}
+.map-tag{position:absolute;z-index:2;left:.75rem;bottom:.75rem;padding:.4rem .75rem;border-radius:999px;
+  background:color-mix(in srgb,var(--cream) 92%, transparent);border:1px solid var(--border);
+  font-family:var(--font-body);font-weight:700;font-size:.76rem;color:var(--ink)}
+.map-frame:hover .map-tag{background:var(--cream)}
+.map-credit{display:block;margin-top:.2rem;font-size:.72rem;color:color-mix(in srgb,var(--muted-text) 80%,transparent)}
 .map-fallback{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;text-align:center;padding:1.5rem;color:var(--muted-text);background:radial-gradient(circle at 50% 42%, color-mix(in srgb,var(--tan) 20%, var(--sand)), var(--sand))}
 .map-fallback svg{color:var(--caramel);margin-bottom:.3rem}
 .map-fallback-name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--ink)}
 .map-fallback-addr{font-size:.95rem}
-.map-frame iframe{position:absolute;inset:0;z-index:1;width:100%;height:100%;border:0}
 .map-note{font-size:.85rem;color:var(--muted-text);margin:.75rem 0 0}
 
 /* ---------- Footer ---------- */
@@ -637,8 +655,9 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   .chair-link:hover .chair-cta svg,.chair-link:focus-visible .chair-cta svg{transform:translateX(3px)}
 
   /* Accordion → horizontal expanding columns */
-  .accordion{flex-direction:row;gap:.6rem;height:clamp(380px,50vw,520px)}
-  .acc-panel{flex:1 1 0;min-width:0;transition:flex .5s var(--ease-out)}
+  .accordion{gap:.6rem;height:clamp(380px,50vw,520px);overflow:visible;scroll-snap-type:none;padding-block:0}
+  .acc-btn img{aspect-ratio:auto}
+  .acc-panel{flex:1 1 0;min-width:0;scroll-snap-align:none;transition:flex .5s var(--ease-out)}
   .acc-panel.is-open{flex:3.2 1 0}
   .acc-btn{height:100%}
   .acc-btn img{height:100%;aspect-ratio:auto}
@@ -664,6 +683,21 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 }
 
 @media (min-width:900px){
+  /* Section heads: headline left, lead right, so the right half of the page
+     is not left empty above every two-column section. */
+  .menu-head,.chairs-head,.work-head,.ritual-head{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:clamp(2rem,5vw,4rem);align-items:end}
+  .menu-sub,.chairs-sub,.work-sub,.ritual-sub{margin:0 0 .4rem;max-width:46ch}
+
+  /* Reviews: sit the Google figure beside the quote instead of above a void */
+  .reviews > .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;
+    column-gap:clamp(2rem,5vw,4rem);align-items:start}
+  .reviews .folio{grid-column:1 / -1}
+  .reviews-top{grid-column:2;grid-row:2;margin:0;justify-self:end}
+  .quote-stage{grid-column:1;grid-row:2;max-width:none}
+  .quote-controls{grid-column:1;grid-row:3}
+
   .hero-cover{display:grid;column-gap:clamp(2rem,4vw,3.5rem);
     grid-template-columns:1fr min(32vw,380px);
     grid-template-areas:"date date" "mast plate" "lede plate";align-items:start}
