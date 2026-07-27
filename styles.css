@@ -341,7 +341,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-plate img{width:100%;height:clamp(240px,52vw,420px);object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md)}
 .menu-feature{background:color-mix(in srgb,var(--tan) 12%,transparent);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem .9rem}
 .menu-feature .menu-cat{border-bottom-color:color-mix(in srgb,var(--caramel) 32%,transparent)}
-.menu-feature .menu-row{padding-top:.35rem}
+/* Feature row: name and price stack on the left, the button sits to the right
+   spanning both lines so it reads level with the title, not hung below it. */
+.menu-feature .menu-row{display:grid;grid-template-columns:auto auto 1fr auto;
+  align-items:center;column-gap:.65rem;row-gap:.15rem;padding-top:.35rem}
+.menu-feature .menu-name{grid-column:1 / 4;grid-row:1;flex:none}
+.menu-feature .menu-price{grid-column:1;grid-row:2}
+.menu-feature .menu-dur{grid-column:2;grid-row:2;margin-right:0}
+.menu-feature .menu-book{grid-column:4;grid-row:1 / 3;align-self:center;justify-self:end}
 .menu-feature-note{margin:.35rem 0 0;color:var(--muted-text);font-size:.86rem}
 
 /* ---------- 04 · The Chairs (team roster) ---------- */
