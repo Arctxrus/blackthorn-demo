@@ -291,12 +291,19 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-group:last-of-type{margin-bottom:0}
 .menu-cat{font-family:var(--font-body);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin:0 0 .5rem;padding-bottom:.45rem;border-bottom:1px solid var(--rule)}
 .menu-group ul{display:flex;flex-direction:column}
-.menu-row{display:flex;align-items:baseline;gap:.55rem;padding:.5rem 0}
+/* Base row is stacked: name on its own line, then price, duration and button.
+   The single-line letterpress row with the dot leader is layered back on at
+   >=1024px, where there is actually room for a leader worth drawing. */
+.menu-row{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .65rem;padding:.65rem 0}
 .menu-name{font-family:var(--font-display);font-weight:600;font-size:clamp(1.08rem,2.4vw,1.24rem);color:var(--ink)}
 .menu-note{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--caramel);background:color-mix(in srgb,var(--tan) 26%,var(--cream));padding:.15rem .4rem;border-radius:6px;vertical-align:middle;margin-left:.3rem}
-.menu-lead{flex:1;min-width:1.25rem;border-bottom:1px dotted color-mix(in srgb,var(--muted-text) 55%,transparent);transform:translateY(-.28em)}
+.menu-name{flex:1 1 100%}
+.menu-lead{display:none;flex:1;min-width:3rem;border-bottom:1px dotted color-mix(in srgb,var(--muted-text) 55%,transparent);transform:translateY(-.28em)}
+.menu-price{order:1}
+.menu-dur{order:2;margin-right:auto}
+.menu-book{order:3}
 .menu-price{font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--ink)}
-.menu-dur{color:var(--muted-text);font-size:.85rem;min-width:3.6em;text-align:right;font-variant-numeric:tabular-nums}
+.menu-dur{color:var(--muted-text);font-size:.85rem;font-variant-numeric:tabular-nums}
 /* Reads as a control, not a text label: tinted pill with a hairline edge, so
    it's obviously tappable on touch where there is no hover to reveal it. */
 .menu-book{align-self:center;position:relative;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
@@ -316,13 +323,17 @@ ul,ol{margin:0;padding:0;list-style:none}
 .menu-feature .menu-book:hover{background:var(--caramel-dark);border-color:var(--caramel-dark)}
 /* Mobile: names already wrap and the leader collapses, so give the row two
    lines - name above, then price, duration and the button with room to breathe. */
-@media (max-width:767px){
-  .menu-row{flex-wrap:wrap;align-items:center;gap:.35rem .65rem;padding:.65rem 0}
-  .menu-name{flex:1 1 100%}
-  .menu-lead{display:none}
-  .menu-price{order:1}
-  .menu-dur{order:2;margin-right:auto;min-width:0;text-align:left}
-  .menu-book{order:3}
+/* Wide enough for a proper leader. The feature row keeps the stacked treatment
+   at every width: its longer name plus the "Most booked" chip squeezed the
+   leader to a 3-dot stub and wrapped the name onto two lines. */
+@media (min-width:768px){
+  .menu-group:not(.menu-feature) .menu-row{flex-wrap:nowrap;align-items:baseline;gap:.55rem;padding:.5rem 0}
+  .menu-group:not(.menu-feature) .menu-name{flex:0 1 auto}
+  .menu-group:not(.menu-feature) .menu-lead{display:block}
+  .menu-group:not(.menu-feature) .menu-price,
+  .menu-group:not(.menu-feature) .menu-dur,
+  .menu-group:not(.menu-feature) .menu-book{order:0}
+  .menu-group:not(.menu-feature) .menu-dur{margin-right:0;min-width:3.6em;text-align:right}
 }
 .menu-plate{margin:0}
 /* Mobile/stacked: definite natural height so the row isn't sized from the
