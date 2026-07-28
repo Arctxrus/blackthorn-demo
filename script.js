@@ -183,13 +183,22 @@
     var tot = document.querySelector(".quote-total");
     var i = 0;
     if (tot) tot.textContent = String(quotes.length);
-    function show(n) {
+    function show(n, dir) {
+      var from = i;
       i = (n + quotes.length) % quotes.length;
-      quotes.forEach(function (q, idx) { q.classList.toggle("is-active", idx === i); });
+      quotes.forEach(function (q, idx) {
+        if (idx === i) {
+          q.style.setProperty("--enter", dir ? (dir > 0 ? "34px" : "-34px") : "0px");
+          q.classList.add("is-active");
+        } else {
+          if (idx === from && from !== i) q.style.setProperty("--enter", dir > 0 ? "-34px" : "34px");
+          q.classList.remove("is-active");
+        }
+      });
       if (cur) cur.textContent = String(i + 1);
     }
-    if (prev) prev.addEventListener("click", function () { show(i - 1); });
-    if (next) next.addEventListener("click", function () { show(i + 1); });
+    if (prev) prev.addEventListener("click", function () { show(i - 1, -1); });
+    if (next) next.addEventListener("click", function () { show(i + 1, 1); });
     show(0);
   })();
 

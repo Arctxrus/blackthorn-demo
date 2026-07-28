@@ -401,7 +401,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .g-score strong{font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--tan)}
 .g-count{color:rgba(250,246,239,.8);font-size:.92rem}
 .quote-stage{display:grid;max-width:58rem}
-.quote{grid-area:1/1;margin:0;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);pointer-events:none}
+/* Slides in from the direction you pressed, and the outgoing quote leaves the
+   opposite way, so prev/next reads as movement rather than a plain crossfade. */
+.quote{grid-area:1/1;margin:0;opacity:0;transform:translateX(var(--enter,0));transition:opacity .45s var(--ease-out),transform .5s var(--ease-out);pointer-events:none}
 .quote.is-active{opacity:1;transform:none;pointer-events:auto}
 .quote-text{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:clamp(1.4rem,3.3vw,2.35rem);line-height:1.24;color:var(--cream);margin:0}
 .quote-text::before{content:"\201C";color:var(--tan);margin-right:.02em}
@@ -722,6 +724,7 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   html:focus-within{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;transition-delay:0ms !important;animation-delay:0ms !important}
   .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
-  .quote{opacity:1 !important;transform:none !important}
+  /* Only the active quote, or all three stack on top of each other */
+  .quote.is-active{opacity:1 !important;transform:none !important}
   .accent-underline path{animation:none !important;stroke-dashoffset:0 !important}
 }
