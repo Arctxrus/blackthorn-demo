@@ -241,8 +241,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* ---------- 01 · The Shop ---------- */
 .shop-grid{display:grid;gap:clamp(1.75rem,5vw,3rem)}
 .shop-lead{align-self:center}
-.shop-title{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:1rem}
-.shop-body{color:var(--muted-text);max-width:46ch;font-size:1.08rem}
+.shop-title{font-size:clamp(2rem,4.5vw,3rem)}
+.shop-body{color:var(--muted-text);margin:.6rem 0 1rem;max-width:46ch}
 .stat-row{display:flex;flex-wrap:wrap;gap:1.5rem 2rem;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
 .stat-num{display:block;font-family:var(--font-display);font-weight:900;font-size:1.9rem;color:var(--ink)}
 .stat-star{color:var(--tan);font-size:1.2rem}
@@ -255,7 +255,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 
 /* ---------- 02 · The Ritual (compact value spread) ---------- */
 .ritual-head{margin-bottom:clamp(1.5rem,4vw,2.5rem)}
-.ritual-title{font-size:clamp(1.9rem,4.5vw,3rem)}
+.ritual-title{font-size:clamp(2rem,4.5vw,3rem)}
 .ritual-sub{color:var(--muted-text);margin:.6rem 0 0;max-width:54ch}
 .ritual-spread{display:grid;gap:clamp(1.5rem,4vw,3rem)}
 .ritual-plate{margin:0}
