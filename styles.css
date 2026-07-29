@@ -148,10 +148,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .nav-book{display:none}
 
 .nav-toggle{
-  margin-left:auto;display:inline-grid;place-items:center;
+  margin-left:auto;display:none;place-items:center;
   width:46px;height:46px;border:1px solid var(--border);border-radius:50%;
   background:var(--ivory);color:var(--ink);cursor:pointer;
 }
+.js .nav-toggle{display:inline-grid}
 .nav-toggle .i-close{display:none}
 .nav-toggle[aria-expanded="true"] .i-open{display:none}
 .nav-toggle[aria-expanded="true"] .i-close{display:block}
@@ -610,13 +611,13 @@ ul,ol{margin:0;padding:0;list-style:none}
 body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 
 /* ---------- Reveal animation ---------- */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
-.reveal.is-in{opacity:1;transform:none}
-.reveal-left,.reveal-right{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
-.reveal-left.is-in,.reveal-right.is-in{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
+.js .reveal.is-in{opacity:1;transform:none}
+.js .reveal-left,.js .reveal-right{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
+.js .reveal-left.is-in,.js .reveal-right.is-in{opacity:1;transform:none}
 @media (min-width:768px){
-  .reveal-left{transform:translateX(-28px)}
-  .reveal-right{transform:translateX(28px)}
+  .js .reveal-left{transform:translateX(-28px)}
+  .js .reveal-right{transform:translateX(28px)}
 }
 .countup{font-variant-numeric:tabular-nums}
 .g-count .countup{display:inline-block;min-width:3ch;text-align:right}
@@ -636,7 +637,7 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   .primary-nav a{position:relative;display:inline-flex;align-items:center;min-height:46px;padding-inline:clamp(.6rem,1.1vw,.95rem);color:var(--ink);text-decoration:none;font-weight:500;font-size:.94rem;transition:color .15s;white-space:nowrap}
   .primary-nav a:hover{color:var(--caramel)}
   .nav-book{display:inline-flex}
-  .nav-toggle{display:none}
+  .js .nav-toggle,.nav-toggle{display:none}
   .mobile-menu{display:none !important}
   .action-bar{display:none}
   body{padding-bottom:0}
@@ -718,7 +719,7 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 @media (prefers-reduced-motion:reduce){
   html:focus-within{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;transition-delay:0ms !important;animation-delay:0ms !important}
-  .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
+  .js .reveal,.js .reveal-left,.js .reveal-right{opacity:1;transform:none}
   /* Only the active quote, or all three stack on top of each other */
   .quote.is-active{opacity:1 !important;transform:none !important}
   .accent-underline path{animation:none !important;stroke-dashoffset:0 !important}
