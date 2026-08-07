@@ -120,6 +120,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 #scroll-sentinel{position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none}
 .header-inner{
   display:flex;align-items:center;gap:1rem;min-height:var(--header-h);
+  /* Track the content column instead of the viewport, or on a wide monitor the
+     bar stretches to 1900px+ while the page below stays 1200px. */
+  max-width:var(--wrap);margin-inline:auto;
   padding-inline:clamp(1.35rem,2.6vw,2.35rem);
   border-radius:999px;
   background:color-mix(in srgb, var(--cream) 82%, transparent);
