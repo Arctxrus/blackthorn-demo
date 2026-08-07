@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arctxrus.github.io/blackthorn-demo/sitemap.xml
+Sitemap: https://blackthorn.pagefront.co.uk/sitemap.xml
